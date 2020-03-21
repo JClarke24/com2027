@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Beesmart</title>
+    <title>BeeSmart</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', 'https://fonts.googleapis.com/css?family=Bree+Serif|Montserrat&display=swap' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+<%= render 'shared/header'  %>
   <body>
     <%= yield %>
   </body>
