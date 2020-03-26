@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Tutors::SessionsController < Devise::SessionsController
-  include Accessible
+  include Accessible_tutor
   skip_before_action :check_tutor, only: :destroy
   # before_action :configure_sign_in_params, only: [:create]
 
