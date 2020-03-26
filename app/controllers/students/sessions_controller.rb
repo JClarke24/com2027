@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Students::SessionsController < Devise::SessionsController
-  include Accessible
+  include Accessible_student
   skip_before_action :check_student, only: :destroy
   # before_action :configure_sign_in_params, only: [:create]
 
