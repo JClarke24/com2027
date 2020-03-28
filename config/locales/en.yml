@@ -30,9 +30,12 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
-
   home:
     home:
       title: BeeSmart
       welcome: The social language app
+
+  shared:
+    header:
+    footer:
+      title: BeeSmart
