@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'tutor_profile/tutorProfile'
   devise_for :tutors, path: 'tutors', controllers: { sessions: "tutors/sessions"}
   devise_for :students, path: 'students', controllers: { sessions: "students/sessions"}
 

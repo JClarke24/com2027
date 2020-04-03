@@ -2,30 +2,35 @@
   <!-- Add BeeSmart Logo -->
   <nav id="navbar">
     <table align="center" >
-      <tr> <th> Students </th> <th> Tutors </th> </tr>
-      <tr>
+      <% if student_signed_in? %>
+      <tr> <th> Students </th> </tr>
+
         <td>
-        <% if student_signed_in? %>
           <%= "#{current_student.email} |" %>
           <%= link_to t('profile'), edit_student_registration_path %>
           <%= '|' %>
           <%= link_to t('logout'), destroy_student_session_path, method: 'delete' %>
-        <% else %>
-          <%= link_to t('login'), new_student_session_path %>
-          <%= '|' %>
-          <%= link_to t('sign_up'), new_student_registration_path %>
-        <% end %>
         </td>
         <td>
-          <% if tutor_signed_in? %>
+          <% elsif tutor_signed_in? %>
+            <tr>  <th> Tutors </th> </tr>
+            <td>
             <%= "#{current_tutor.email} |" %>
             <%= link_to t('profile'), edit_tutor_registration_path %>
             <%= '|' %>
             <%= link_to t('logout'), destroy_tutor_session_path, method: 'delete' %>
+          </td>
           <% else %>
+            <tr> <th> Students </th> <th> Tutors </th> </tr>
+            <td>
+
+            <%= link_to t('login'), new_student_session_path %>
+            <%= '|' %>
+            <%= link_to t('sign_up'), new_student_registration_path %>
             <%= link_to t('login'), new_tutor_session_path %>
             <%= '|' %>
             <%= link_to t('sign_up'), new_tutor_registration_path %>
+            </td>
           <% end %>
         </td>
       </tr>
