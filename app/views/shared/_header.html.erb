@@ -3,37 +3,44 @@
   <nav id="navbar">
     <table align="center" >
       <% if student_signed_in? %>
-      <tr> <th> Students </th> </tr>
-
-        <td>
-          <%= "#{current_student.email} |" %>
-          <%= link_to t('profile'), edit_student_registration_path %>
-          <%= '|' %>
-          <%= link_to t('logout'), destroy_student_session_path, method: 'delete' %>
-        </td>
-        <td>
-          <% elsif tutor_signed_in? %>
-            <tr>  <th> Tutors </th> </tr>
-            <td>
+        <tr> <th> Students </th> </tr>
+        <tr>
+          <td>
+            <%= "#{current_student.email} |" %>
+            <%= link_to t('dashboard'), authenticated_student_root_path %>
+            <%= '|' %>
+            <%= link_to t('profile'), edit_student_registration_path %>
+            <%= '|' %>
+            <%= link_to t('logout'), destroy_student_session_path, method: 'delete' %>
+          </td>
+        </tr>
+      <% elsif tutor_signed_in? %>
+        <tr>  <th> Tutors </th> </tr>
+        <tr>
+          <td>
             <%= "#{current_tutor.email} |" %>
-            <%= link_to t('profile'), edit_tutor_registration_path %>
+            <%= link_to t('dashboard'), authenticated_tutor_root_path %>
+            <%= '|' %>
+            <%= link_to t('profile'), authenticated_tutor_profile_path %>
             <%= '|' %>
             <%= link_to t('logout'), destroy_tutor_session_path, method: 'delete' %>
           </td>
-          <% else %>
-            <tr> <th> Students </th> <th> Tutors </th> </tr>
-            <td>
-
+        </tr>
+      <% else %>
+        <tr> <th> Students </th> <th> Tutors </th> </tr>
+        <tr>
+          <td>
             <%= link_to t('login'), new_student_session_path %>
             <%= '|' %>
             <%= link_to t('sign_up'), new_student_registration_path %>
+          </td>
+          <td>
             <%= link_to t('login'), new_tutor_session_path %>
             <%= '|' %>
             <%= link_to t('sign_up'), new_tutor_registration_path %>
-            </td>
-          <% end %>
-        </td>
-      </tr>
+          </td>
+        </tr>
+      <% end %>
     </table>
   </nav>
 
