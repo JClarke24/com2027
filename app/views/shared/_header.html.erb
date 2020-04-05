@@ -7,25 +7,25 @@
         <td>
         <% if student_signed_in? %>
           <%= "#{current_student.email} |" %>
-          <%= link_to t('profile'), edit_student_registration_path %>
+          <%= link_to t('.profile'), edit_student_registration_path %>
           <%= '|' %>
-          <%= link_to t('logout'), destroy_student_session_path, method: 'delete' %>
+          <%= link_to t('.logout'), destroy_student_session_path, method: 'delete' %>
         <% else %>
-          <%= link_to t('login'), new_student_session_path %>
+          <%= link_to t('.login'), new_student_session_path %>
           <%= '|' %>
-          <%= link_to t('sign_up'), new_student_registration_path %>
+          <%= link_to t('.sign_up'), new_student_registration_path %>
         <% end %>
         </td>
         <td>
           <% if tutor_signed_in? %>
             <%= "#{current_tutor.email} |" %>
-            <%= link_to t('profile'), edit_tutor_registration_path %>
+            <%= link_to t('.profile'), edit_tutor_registration_path %>
             <%= '|' %>
-            <%= link_to t('logout'), destroy_tutor_session_path, method: 'delete' %>
+            <%= link_to t('.logout'), destroy_tutor_session_path, method: 'delete' %>
           <% else %>
-            <%= link_to t('login'), new_tutor_session_path %>
+            <%= link_to t('.login'), new_tutor_session_path %>
             <%= '|' %>
-            <%= link_to t('sign_up'), new_tutor_registration_path %>
+            <%= link_to t('.sign_up'), new_tutor_registration_path %>
           <% end %>
         </td>
       </tr>
