@@ -90,7 +90,7 @@
      }
 
      .logo{
-         width: 30%;
+         width: 40%;
      }
      a{
          color:white;
@@ -137,9 +137,18 @@
      th{
        text-align: center;
      }
+     #langSelect img{
+       width: 10vw;
+
+     }
 
      header{
-
+       th{
+         color: $brown;
+       }
+       tr{
+         color: $lightyellow;
+       }
      }
 
      footer{
