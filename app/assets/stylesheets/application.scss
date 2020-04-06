@@ -143,5 +143,9 @@
      }
 
      footer{
-
+       // keep footer at bottom of screen at all times
+       position: absolute;
+       bottom: 0%;
+       right: 0%;
+       padding:  0 2em;
      }
