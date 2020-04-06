@@ -38,7 +38,7 @@ en:
   shared:
     header:
         login: Login
-        logout: logout
+        logout: Logout
         profile: Profile
         sign_up: Sign Up
     footer:
