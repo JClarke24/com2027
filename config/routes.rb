@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
 
-  devise_for :tutors, path: 'tutors', controllers: { sessions: "tutors/sessions"}
-  devise_for :students, path: 'students', controllers: { sessions: "students/sessions"}
+  devise_for :tutors, path: 'tutors', controllers: { registrations: "tutors/registrations", sessions: "tutors/sessions"}
+  devise_for :students, path: 'students', controllers: { registrations: "students/registrations", sessions: "students/sessions"}
 
   authenticated :tutor do
     root 'tutors/dashboards#home', as: :authenticated_tutor_root
     get 'profile', to: 'tutors/dashboards#profile', as: :authenticated_tutor_profile
+    get 'quiz', to: 'tutors/quizzes#show'
   end
 
   authenticated :student do
