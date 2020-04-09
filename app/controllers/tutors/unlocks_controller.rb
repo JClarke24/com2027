@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Tutors::UnlocksController < Devise::UnlocksController
+  include Accessible_tutor
   # GET /resource/unlock/new
   # def new
   #   super

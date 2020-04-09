@@ -34,7 +34,7 @@ class DeviseCreateTutors < ActiveRecord::Migration[5.2]
       # t.datetime :locked_at
 
       ## Other
-      t.column :approval, :integer, null: false, default: 0
+      t.column :approval, :integer, null: false
 
       t.timestamps null: false
     end
