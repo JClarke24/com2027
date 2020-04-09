@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   authenticated :student do
     root 'students/dashboards#home', as: :authenticated_student_root
+    get 'profile', to: 'students/dashboards#profile', as: :authenticated_student_profile
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 

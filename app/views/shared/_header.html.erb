@@ -9,7 +9,7 @@
             <%= "#{current_student.email} |" %>
             <%= link_to t('dashboard'), authenticated_student_root_path %>
             <%= '|' %>
-            <%= link_to t('profile'), edit_student_registration_path %>
+            <%= link_to t('profile'), authenticated_student_profile_path %>
             <%= '|' %>
             <%= link_to t('logout'), destroy_student_session_path, method: 'delete' %>
           </td>
