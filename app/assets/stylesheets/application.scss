@@ -137,6 +137,16 @@
      th{
        text-align: center;
      }
+     #language{
+       h2{
+         color: $white;
+       }
+       background-color: $yellow;
+       border-radius: 5px;
+       width: 70%;
+       margin-left: 15%;
+       padding: 1em;
+     }
      #langSelect img{
        width: 10vw;
 

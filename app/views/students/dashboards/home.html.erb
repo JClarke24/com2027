@@ -1,5 +1,7 @@
 <h1>Welcome to your student dashboard!</h1>
 
+<!-- shows language process
+or if a language hasn't been selected, lets student choose language -->
 <div id="language">
   <h2>Your language progress</h2>
   <% if @language %>
@@ -31,4 +33,17 @@
     </div>
   </div>
   <% end %>
+</div>
+<br>
+<!-- shows tutor info
+or if tutor hasn't been selected, allows student to find a tutor -->
+<div id="tutor">
+<h2>Your tutor progress </h2>
+<% if @tutor %>
+<% #{@tutor.name}%>
+<% else %>
+<p>You don't have a tutor yet. Pick one now to take your learning to the
+next level!</p>
+<button class = "btn"><a href="findTutor">Find a Tutor</a></button>
+<% end %>
 </div>
