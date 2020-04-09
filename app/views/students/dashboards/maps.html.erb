@@ -1,4 +1,10 @@
 
+<%= javascript_tag do %>
+  window.tutors = <%=raw Tutor.limit(10).to_json %>;
+  console.log(tutors[0]);
+<% end %>
+<%= form_tag('requestTutor')  %>
+<%= hidden_field_tag 'tutor_id' %>
     <p></p>
     <h2 class = "lead">Match with tutors in your local area.</h2>
 
@@ -11,10 +17,12 @@
   <input type="text" id = "setRadiusTextKm" name = "Search radius (text/km)" min = "0.5" max = "50">
   <label for="Search radius (text/km)"> km</label>
    &nbsp; &#47;
-    <input type="text" id = "setRadiusTextMi" name = "Search radius (text/mi)" min = "0.5" max = "50">
+  <input type="text" id = "setRadiusTextMi" name = "Search radius (text/mi)" min = "0.5" max = "50">
   <label for="Search radius (text/mi)"> mi</label>
 
   <div id="map"></div>
+  <div class="hide">
+  </div>
  <script>
       // Note: This example requires that you consent to location sharing when
       // prompted by your browser. If you see the error "The Geolocation service
@@ -62,37 +70,29 @@
     scaledSize: new google.maps.Size(50, 50)// scaled size
 
 };
-var marker = new google.maps.Marker({
-    position: {lat: 51.243781, lng: -0.589525},
+var stringLoc = (tutors[0].location);
+stringLoc= stringLoc.replace("(", "");
+ stringLoc =stringLoc.replace(")", "");
+ stringLoc= stringLoc.split(",");
+ var lat = parseFloat(stringLoc[0]);
+ var lng = parseFloat(stringLoc[1]);
+  var location = new google.maps.LatLng(lat,lng);
+   var marker = new google.maps.Marker({
+    position: location,
     map: map,
-    title: 'Bob',
+    title: tutors[0].forename,
     icon: icon
   });
 
   marker.addListener('click', function() {
-      infoWindow.setContent('<h4 class="name">Bob</h4>'+ '<img src = "https://cdn.ebaumsworld.com/2020/01/13/022201/86172798/lego-star-wars-profile-99.jpg" />'+
-                            '<h5 class = "languages"> Teaches French, English </h2>'+
-                            '<h6 class = "tutorDescription"> Salut! I\'m Bob and I love baguettes. Here\'s some really exciting stuff about me blah blah blah blah</h6>'+
-                            '<button class = "btn pickTutor"> <a href = "custom/url">Request This Tutor </a> </button>'
-);
+      $('#tutor_id').val(tutors[0].id);
+      infoWindow.setContent('<h4 class="name">'+tutors[0].forename + '</h4> <img src = "https://i.stack.imgur.com/34AD2.jpg" />'+
+                            '<h5 class = "languages"> Teaches '+ tutors[0].language + ' </h2>'+
+                            '<h6 class = "tutorDescription"> '+ tutors[0].description + ' </h6>'+
+                            "<input type= 'submit' name='commit' value='Request Tutor' data-disable-with='requestTutor' />"
+                            );
       infoWindow.maxWidth = 20;
     infoWindow.open(map, marker);
-  });
-         var marker2 = new google.maps.Marker({
-    position: {lat: 51.238716, lng: -0.579532},
-    map: map,
-    title: 'Jane',
-    icon: icon
-  });
-
-  marker2.addListener('click', function() {
-      infoWindow.setContent('<h4 class="name">Jane</h4>'+ '<img src = "https://i.stack.imgur.com/34AD2.jpg" />'+
-                            '<h5 class = "languages"> Teaches Spanish </h2>'+
-                            '<h6 class = "tutorDescription"> Some information about me to convince you I\'m the right tutor for the job. Having a picture and some information about a potential tutor is likely to make users feel more comfortable picking a tutor, because they know what they\'re expecting.  </h6>'+
-                            '<button class = "btn pickTutor"> <a href = "tutoring/request">Request This Tutor </a> </button>'
-);
-      infoWindow.maxWidth = 20;
-    infoWindow.open(map, marker2);
   });
 
 

@@ -11,30 +11,45 @@ or if a language hasn't been selected, lets student choose language -->
   <% else %>
   <p>You haven't chosen a language yet.</p>
   <div id="langSelect">
+    <div class = "container">
     <div class="col-sm-3">
       French <br>
       <%=image_tag("french.png")%><br>
-    <%= button_to "Learn French", {action: "pickLanguage", params: {:lang => "French"}}, {class: 'btn'} %>
+
     </div>
     <div class="col-sm-3">
       Spanish <br>
       <%=image_tag("spanish.png")%><br>
-        <%= button_to "Learn Spanish", {action: "pickLanguage", params: {:lang => "Spanish"}}, {class: 'btn'} %>
     </div>
     <div class="col-sm-3">
       English <br>
       <%=image_tag("english.png")%><br>
-      <%= button_to "Learn English", {action: "pickLanguage", params: {:lang => "English"}}, {class: 'btn'} %>
     </div>
     <div class="col-sm-3">
       German <br>
       <%=image_tag("germany.jpeg")%><br>
-        <%= button_to "Learn German", {action: "pickLanguage", params: {:lang => "German"}}, {class: 'btn'} %>
     </div>
+    </div>
+    <div class="col-sm-3">
+        <%= button_to "Learn French", {action: "pickLanguage", params: {:lang => "French"}}, {class: 'btn'} %>
+    </div>
+    <div class="col-sm-3">
+      <%= button_to "Learn Spanish", {action: "pickLanguage", params: {:lang => "Spanish"}}, {class: 'btn'} %>
+    </div>
+    <div class="col-sm-3">
+    <%= button_to "Learn English", {action: "pickLanguage", params: {:lang => "English"}}, {class: 'btn'} %>
+      </div>
+    <div class="col-sm-3">
+        <%= button_to "Learn German", {action: "pickLanguage", params: {:lang => "German"}}, {class: 'btn'} %>
+  </div>
   </div>
   <% end %>
 </div>
+
 <br>
+<div class="spacer">
+
+</div>
 <!-- shows tutor info
 or if tutor hasn't been selected, allows student to find a tutor -->
 <div id="tutor">

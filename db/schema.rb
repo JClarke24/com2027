@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_09_105318) do
+ActiveRecord::Schema.define(version: 2020_04_09_154433) do
 
   create_table "students", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2020_04_09_105318) do
     t.string "forename", default: "First Name", null: false
     t.string "surname", default: "Surname", null: false
     t.date "dob"
+    t.integer "tutor_id"
     t.index ["email"], name: "index_students_on_email", unique: true
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
   end

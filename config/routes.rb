@@ -12,8 +12,9 @@ Rails.application.routes.draw do
   authenticated :student do
     root 'students/dashboards#home', as: :authenticated_student_root
     post 'pickLanguage', to: 'students/dashboards#pickLanguage'
+    post 'requestTutor', to: 'students/dashboards#requestTutor'
     get 'dashboard', to: 'students/dashboards#home'
-    get 'findTutor', to: 'students/dashboards#findTutor'
+    get 'findTutor', to: 'students/dashboards#maps'
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 

@@ -138,18 +138,39 @@
        text-align: center;
      }
      #language{
-       h2{
-         color: $white;
-       }
-       background-color: $yellow;
-       border-radius: 5px;
-       width: 70%;
-       margin-left: 15%;
+
+       display: block;
+       width: 80%;
+       margin-left: 10%;
        padding: 1em;
      }
-     #langSelect img{
-       width: 10vw;
+     #langSelect{
+       height: 80%;
+       width: 100%;
 
+       img{
+            width: 15vw;
+       }
+       .btn{
+
+       }
+     }
+     .container{
+       width: 100%;
+     }
+     .spacer{
+       height: 2vh;
+       width: 100%;
+       display: block;
+     }
+     #tutor{
+       display: block;
+       width: 80%;
+       margin-left: 10%;
+       margin-top: 2%;
+       h2{
+         text-align: center;
+       }
      }
 
      header{
