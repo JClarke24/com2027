@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Students::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  include Accessible_student
   # You should configure your model like this:
   # devise :omniauthable, omniauth_providers: [:twitter]
 

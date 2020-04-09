@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Students::ConfirmationsController < Devise::ConfirmationsController
+  include Accessible_student
   # GET /resource/confirmation/new
   # def new
   #   super
