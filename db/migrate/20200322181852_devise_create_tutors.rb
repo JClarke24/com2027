@@ -3,6 +3,7 @@
 class DeviseCreateTutors < ActiveRecord::Migration[5.2]
   def change
     create_table :tutors do |t|
+
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
@@ -32,6 +33,8 @@ class DeviseCreateTutors < ActiveRecord::Migration[5.2]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
+      ## Other
+      t.column :approval, :integer, null: false
 
       t.timestamps null: false
     end
