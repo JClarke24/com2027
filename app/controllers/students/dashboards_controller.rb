@@ -17,4 +17,5 @@ def requestTutor
   current_student.save
   redirect_to authenticated_student_root_url
 end
+
 end

@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     get 'dashboard', to: 'tutors/dashboards#home'
     get 'setLocation', to: 'tutors/dashboards#setLocation'
     post 'setLocation', to: 'tutors/dashboards#setLocationSubmit'
+    get 'setInfo', to: 'tutors/dashboards#setInfo'
+    post 'setInfo', to: 'tutors/dashboards#setInfo'
   end
 
   authenticated :student do

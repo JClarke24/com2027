@@ -2,6 +2,10 @@
 
 <div class="tutoring">
   <h2>Your tutees</h2>
+  <% if @forename == "First Name" || @surname == "Surname" || @description == nil%>
+    <h5> Complete your profile so you can start tutoring. </h5>
+    <button type="button" name="button" class = "btn"><a href="setInfo">Complete my Profile</a></button>
+<%else %>
   <% if @location != "(0.0, 0.0)"%>
   <p> Your location is
       <%=@location %>
@@ -11,5 +15,5 @@
       <p></p>
       <button type="button" name="button" class = "btn"><a href="setLocation">Set my Location</a></button>
   <% end %>
-
+<% end %>
 </div>

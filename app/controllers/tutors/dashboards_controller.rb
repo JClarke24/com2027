@@ -11,4 +11,20 @@ class Tutors::DashboardsController < ApplicationController
     current_tutor.save
     redirect_to authenticated_tutor_root_url
   end
+
+  def setInfo
+    @language = current_tutor.language
+    @forename = current_tutor.forename
+    @surname = current_tutor.surname
+    @description = current_tutor.description
+    forename = params[:forename]
+    surname = params[:surname]
+    language = params[:language]
+    description = params[:description]
+    current_tutor.forename = forename
+    current_tutor.surname = surname
+    current_tutor.language = language
+    current_tutor.description = description
+    current_tutor.save
+  end
 end

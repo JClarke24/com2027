@@ -134,6 +134,7 @@
          text-align: center;
      }
 
+
      th{
        text-align: center;
      }
@@ -144,6 +145,14 @@
        margin-left: 10%;
        padding: 1em;
      }
+     form{
+       select{
+         width: 10%;
+         text-align: center;
+         margin-left:45%;
+       }
+     }
+
      #langSelect{
        height: 80%;
        width: 100%;

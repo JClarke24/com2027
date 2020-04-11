@@ -1,7 +1,7 @@
 
 <%= javascript_tag do %>
-  window.tutors = <%=raw Tutor.limit(10).to_json %>;
-  console.log(tutors[0]);
+  window.tutors = <%=raw Tutor.limit(100).to_json %>;
+  console.log(tutors);
 <% end %>
 <%= form_tag('requestTutor')  %>
 <%= hidden_field_tag 'tutor_id' %>
@@ -23,14 +23,17 @@
   <div id="map"></div>
   <div class="hide">
   </div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDN7VGKV5VcNNsh5bgwx1TCK-iOpK1k-6c&libraries=places&callback=initMap"></script>
  <script>
       // Note: This example requires that you consent to location sharing when
       // prompted by your browser. If you see the error "The Geolocation service
       // failed.", it means you probably did not give permission for the browser to
       // locate you.
-    var map, places, infoWindow;
+    var map, places;
+    var infoWindow;
      var autocomplete;
      var circle;
+     var iconSize;
        // Try HTML5 geolocation.
        $('#useloc').click(function() {
            getLocationGeo();
@@ -52,7 +55,8 @@
             radius: 10000,
             visible:false
           });
-        infoWindow = new google.maps.InfoWindow;
+          iconSize = new google.maps.Size(50, 50);
+
     // Create the autocomplete object and associate it with the UI input control.
         // Restrict the search to the default country, and to place type "cities".
         autocomplete = new google.maps.places.Autocomplete(
@@ -62,41 +66,55 @@
               componentRestrictions: countryRestrict
             });
         places = new google.maps.places.PlacesService(map);
-
         autocomplete.addListener('place_changed', onPlaceChanged);
+        infoWindow = new google.maps.InfoWindow();
+ }
 
-    var icon = {
-    url: "<%= asset_path('beelogo.png') %>",
-    scaledSize: new google.maps.Size(50, 50)// scaled size
+ initMap();
+ var icon = {
+ url: "<%= asset_path('beelogo.png') %>",
+ scaledSize: iconSize// scaled size
 
 };
-var stringLoc = (tutors[0].location);
-stringLoc= stringLoc.replace("(", "");
- stringLoc =stringLoc.replace(")", "");
- stringLoc= stringLoc.split(",");
- var lat = parseFloat(stringLoc[0]);
- var lng = parseFloat(stringLoc[1]);
-  var location = new google.maps.LatLng(lat,lng);
-   var marker = new google.maps.Marker({
-    position: location,
-    map: map,
-    title: tutors[0].forename,
-    icon: icon
-  });
+//stores the markers and their i values in a map
+//because the click listener is fired after the for loop, so it gets the value of i
+//as tutors.length which is invalid
+  var markerMap = new Map();
+for(var i = 0; i < tutors.length; i++){
+  var stringLoc = (tutors[i].location);
+  stringLoc= stringLoc.replace("(", "");
+  stringLoc =stringLoc.replace(")", "");
+  stringLoc= stringLoc.split(",");
+  var lat = parseFloat(stringLoc[0]);
+  var lng = parseFloat(stringLoc[1]);
+  markerMap.set(("marker"+i),i);
+  console.log("tutors[i]: "+ tutors[markerMap.get('marker'+i)].id);
+  eval("marker"+i+" = new google.maps.Marker({position: {lat:lat, lng:lng},map: map, icon:icon});");
+  eval("marker"+i+".setTitle('marker"+i+"');");
+  var iVal = 0;
+  // eval("marker"+i+".addListener('click', function(){"+"iVal = markerMap.get('marker'+i);$('#tutor_id').val(tutors[iVal]);"+
+  // "infoWindow.setContent("+"'<h4>eval(tutors[iVal].forename);</h4><h5> Teaches </h5>'"+
+  // ");infoWindow.open(map,marker"+i+")})");
+  //     }
+  currentMarker = getMarker(i);
+  currentMarker.addListener('click', function() {
+    markerName = this.get('title');
+    iVal = markerMap.get(markerName);
+    var currentTutor = tutors[iVal];
+    $('#tutor_id').val(tutors[iVal]);
+        infoWindow.setContent('<h4 class="name">'+currentTutor.forename +
+                              '<h5 class = "languages"> Teaches '+ currentTutor.language + ' </h2>'+
+                              '<h6 class = "tutorDescription"> '+ currentTutor.description + ' </h6>'+
+                              "<input type= 'submit' name='commit' value='Request Tutor' data-disable-with='requestTutor' />"
+                              );
+        infoWindow.maxWidth = 20;
+        infoWindow.open(map, getMarker(iVal));
+      });
+    }
 
-  marker.addListener('click', function() {
-      $('#tutor_id').val(tutors[0].id);
-      infoWindow.setContent('<h4 class="name">'+tutors[0].forename + '</h4> <img src = "https://i.stack.imgur.com/34AD2.jpg" />'+
-                            '<h5 class = "languages"> Teaches '+ tutors[0].language + ' </h2>'+
-                            '<h6 class = "tutorDescription"> '+ tutors[0].description + ' </h6>'+
-                            "<input type= 'submit' name='commit' value='Request Tutor' data-disable-with='requestTutor' />"
-                            );
-      infoWindow.maxWidth = 20;
-    infoWindow.open(map, marker);
-  });
-
-
-      }
+function getMarker(i){
+  return eval("marker"+i);
+}
 
      function getLocationGeo(){
 
@@ -176,6 +194,5 @@ stringLoc= stringLoc.replace("(", "");
          circle.setCenter(map.getCenter());
          circle.setRadius(this.value*1609);
      }
+
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDN7VGKV5VcNNsh5bgwx1TCK-iOpK1k-6c&libraries=places&callback=initMap"
-        async defer></script>

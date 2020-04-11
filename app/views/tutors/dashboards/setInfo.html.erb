@@ -1,0 +1,28 @@
+<%= csrf_meta_tags %>
+<h2>Finish your Profile</h2>
+
+<%= form_tag('setInfo') %>
+<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+  <div class="field">
+    <%= label_tag :forename %><br />
+    <%= text_field_tag :forename, @forename%>
+  </div>
+  <div class="field">
+    <%= label_tag :surname %><br />
+    <%= text_field_tag :surname, @surname %>
+  </div>
+  <div class="field">
+      <%= label_tag :language, "What language are you teaching?" %><br />
+    <%= select_tag :language,  options_for_select([['French', 'French'], ['German', 2], ['Spanish', 3], ['English', 4]]) %>
+
+  </div>
+  <div class="field">
+    <%= label_tag :description, "Write a little about yourself to help students get to know you." %><br />
+    <%= text_area_tag :description, @description %>
+  </div>
+
+
+  <div class="actions">
+    <%= submit_tag "Update" %>
+  </div>
