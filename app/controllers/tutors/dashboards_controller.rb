@@ -12,7 +12,8 @@ class Tutors::DashboardsController < ApplicationController
     redirect_to authenticated_tutor_root_url
   end
 
-  def setInfo
+  def updateInfo
+    if current_tutor
     @language = current_tutor.language
     @forename = current_tutor.forename
     @surname = current_tutor.surname
@@ -26,5 +27,7 @@ class Tutors::DashboardsController < ApplicationController
     current_tutor.language = language
     current_tutor.description = description
     current_tutor.save
+    redirect_to authenticated_tutor_root_url
+  end
   end
 end

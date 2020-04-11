@@ -1,6 +1,6 @@
 
 <%= javascript_tag do %>
-  window.tutors = <%=raw Tutor.limit(100).to_json %>;
+  window.tutors = <%=raw Tutor.where(language: current_student.language).limit(100).to_json %>;
   console.log(tutors);
 <% end %>
 <%= form_tag('requestTutor')  %>
@@ -101,7 +101,7 @@ for(var i = 0; i < tutors.length; i++){
     markerName = this.get('title');
     iVal = markerMap.get(markerName);
     var currentTutor = tutors[iVal];
-    $('#tutor_id').val(tutors[iVal]);
+    $('#tutor_id').val(tutors[iVal].id+1);
         infoWindow.setContent('<h4 class="name">'+currentTutor.forename +
                               '<h5 class = "languages"> Teaches '+ currentTutor.language + ' </h2>'+
                               '<h6 class = "tutorDescription"> '+ currentTutor.description + ' </h6>'+
@@ -194,5 +194,6 @@ function getMarker(i){
          circle.setCenter(map.getCenter());
          circle.setRadius(this.value*1609);
      }
+
 
     </script>
