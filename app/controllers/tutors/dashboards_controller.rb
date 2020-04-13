@@ -3,6 +3,9 @@ class Tutors::DashboardsController < ApplicationController
     if current_tutor
       @language = current_tutor.language
       @location = current_tutor.location
+      @forename = current_tutor.forename
+      @surname = current_tutor.surname
+      @description = current_tutor.description
     end
   end
   def setLocationSubmit
@@ -11,7 +14,12 @@ class Tutors::DashboardsController < ApplicationController
     current_tutor.save
     redirect_to authenticated_tutor_root_url
   end
-
+def setInfo
+  @language = current_tutor.language
+  @forename = current_tutor.forename
+  @surname = current_tutor.surname
+  @description = current_tutor.description
+end
   def updateInfo
     if current_tutor
     @language = current_tutor.language
@@ -30,4 +38,20 @@ class Tutors::DashboardsController < ApplicationController
     redirect_to authenticated_tutor_root_url
   end
   end
+  def acceptStudent
+    student_id = params[:student_id]
+    @student = Student.find(student_id)
+    @student.tutor_confirmed = true
+    @student.save
+    redirect_to dashboard_url
+end
+def rejectStudent
+  student_id = params[:student_id]
+  @student = Student.find(student_id)
+  @student.tutor_id = nil
+  @student.save
+  redirect_to authenticated_tutor_root_url
+end
+def messages
+end
 end

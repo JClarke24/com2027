@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     post 'setLocation', to: 'tutors/dashboards#setLocationSubmit'
     get 'setInfo', to: 'tutors/dashboards#setInfo'
     post 'setInfo', to: 'tutors/dashboards#updateInfo'
+    post 'acceptStudent', to: 'tutors/dashboards#acceptStudent'
+    post 'rejectStudent', to: 'tutors/dashboards#rejectStudent'
+    post 'messages', to: 'tutors/dashboards#messages'
   end
 
   authenticated :student do
