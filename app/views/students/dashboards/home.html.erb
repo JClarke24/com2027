@@ -54,11 +54,15 @@ or if a language hasn't been selected, lets student choose language -->
 or if tutor hasn't been selected, allows student to find a tutor -->
 <div id="tutor">
 <h2>Your tutor progress </h2>
-<% if @tutor %>
-<% #{@tutor.name}%>
+<% if @tutor && @tutor_confirmed %>
+<%= @tutor.forename%> &nbsp;<%= @tutor.sursname%>
+<%elsif @tutor %>
+<p>Your tutor request has been sent to <%= @tutor.forename %></p>
 <% else %>
+<% puts("Tutor id #{@tutor_id}") %>
 <p>You don't have a tutor yet. Pick one now to take your learning to the
 next level!</p>
 <button class = "btn"><a href="findTutor">Find a Tutor</a></button>
 <% end %>
+
 </div>
