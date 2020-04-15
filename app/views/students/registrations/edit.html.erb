@@ -27,6 +27,12 @@
   </div>
 
   <div class="field">
+    <%= f.label :image %> <br />
+    <%= image_tag(current_student.image_url, :height => "150") %>
+    <%= f.file_field :image %>
+  </div>
+
+  <div class="field">
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
