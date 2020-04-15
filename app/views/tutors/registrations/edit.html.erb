@@ -27,10 +27,37 @@
   </div>
 
   <div class="field">
-    <%= f.label :image %> <br />
+    <%= f.label :image %><br />
     <%= image_tag(current_tutor.image_url, :height => "150") %>
     <%= f.file_field :image %>
   </div>
+
+  <div class="field">
+    <%= f.label :forename %><br />
+    <%= f.text_field :forename %>
+  </div>
+
+  <div class="field">
+    <%= f.label :surname %><br />
+    <%= f.text_field :surname %>
+  </div>
+
+  <div class="field">
+    <%= f.label :dob %><br />
+    <%= f.date_select :dob, start_year: Date.today.year - 100, end_year: Date.today.year %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phone %><br />
+    <%= f.text_field :phone %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+
+  <hr>
 
   <div class="field">
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />

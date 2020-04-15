@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_15_134616) do
+ActiveRecord::Schema.define(version: 2020_04_15_170208) do
 
   create_table "students", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -21,12 +21,13 @@ ActiveRecord::Schema.define(version: 2020_04_15_134616) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "language"
-    t.string "forename", default: "First Name", null: false
-    t.string "surname", default: "Surname", null: false
-    t.date "dob"
     t.integer "tutor_id"
     t.boolean "tutor_confirmed", default: false
     t.string "image"
+    t.string "forename", default: "Forename"
+    t.string "surname", default: "Surname"
+    t.date "dob"
+    t.string "phone", default: "Phone Number"
     t.index ["email"], name: "index_students_on_email", unique: true
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
   end
@@ -41,12 +42,13 @@ ActiveRecord::Schema.define(version: 2020_04_15_134616) do
     t.datetime "updated_at", null: false
     t.string "language"
     t.string "location", default: "(0.0, 0.0)"
-    t.string "forename", default: "First Name", null: false
-    t.string "surname", default: "Surname", null: false
-    t.date "dob"
-    t.text "description"
     t.integer "approval", default: 0, null: false
     t.string "image"
+    t.string "forename", default: "Forename"
+    t.string "surname", default: "Surname"
+    t.date "dob"
+    t.string "phone", default: "Phone Number"
+    t.string "description", default: "Description"
     t.index ["email"], name: "index_tutors_on_email", unique: true
     t.index ["reset_password_token"], name: "index_tutors_on_reset_password_token", unique: true
   end
