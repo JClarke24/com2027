@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_22_181852) do
+ActiveRecord::Schema.define(version: 2020_04_10_085711) do
 
   create_table "students", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -20,6 +20,12 @@ ActiveRecord::Schema.define(version: 2020_03_22_181852) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "language"
+    t.string "forename", default: "First Name", null: false
+    t.string "surname", default: "Surname", null: false
+    t.date "dob"
+    t.integer "tutor_id"
+    t.boolean "tutor_confirmed", default: false
     t.index ["email"], name: "index_students_on_email", unique: true
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
   end
@@ -32,6 +38,12 @@ ActiveRecord::Schema.define(version: 2020_03_22_181852) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "language"
+    t.string "location", default: "(0.0, 0.0)"
+    t.string "forename", default: "First Name", null: false
+    t.string "surname", default: "Surname", null: false
+    t.date "dob"
+    t.text "description"
     t.index ["email"], name: "index_tutors_on_email", unique: true
     t.index ["reset_password_token"], name: "index_tutors_on_reset_password_token", unique: true
   end

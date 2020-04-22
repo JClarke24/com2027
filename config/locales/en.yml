@@ -37,5 +37,10 @@ en:
 
   shared:
     header:
+        login: Login
+        logout: Logout
+        profile: Profile
+        sign_up: Sign Up
+        home: My dashboard
     footer:
       title: BeeSmart

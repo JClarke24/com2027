@@ -4,14 +4,29 @@ Rails.application.routes.draw do
 
   authenticated :tutor do
     root 'tutors/dashboards#home', as: :authenticated_tutor_root
+    get 'dashboard', to: 'tutors/dashboards#home'
+    get 'setLocation', to: 'tutors/dashboards#setLocation'
+    post 'setLocation', to: 'tutors/dashboards#setLocationSubmit'
+    get 'setInfo', to: 'tutors/dashboards#setInfo'
+    post 'setInfo', to: 'tutors/dashboards#updateInfo'
+    post 'acceptStudent', to: 'tutors/dashboards#acceptStudent'
+    post 'rejectStudent', to: 'tutors/dashboards#rejectStudent'
+    post 'messages', to: 'tutors/dashboards#messages'
   end
 
   authenticated :student do
     root 'students/dashboards#home', as: :authenticated_student_root
+    post 'pickLanguage', to: 'students/dashboards#pickLanguage'
+    post 'requestTutor', to: 'students/dashboards#requestTutor'
+    get 'dashboard', to: 'students/dashboards#home'
+    get 'findTutor', to: 'students/dashboards#maps'
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   #Home page is the root
   root 'home#home'
+
+  #redirect user to login if they try to access dashboard without authentication
+  get 'dashboard', to: 'home#home'
 
 end
