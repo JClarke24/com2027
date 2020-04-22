@@ -28,13 +28,18 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
           </div>
         </div>
         <hr>
-        <div class="w3-container">
+        <div class="w3-display-container">
           <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i><%= current_student.job%></p>
           <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i><%= current_student.address + ", " + current_student.country %> </p>
           <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i> <%= current_student.email %> </p>
           <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i> <%= current_student.phone %> </p>
-          <hr>
-
+          <br/>
+          <div class="w3-display-bottomleft w3-container">
+            <small> <%= link_to "Edit profile", :edit_student_registration, style: "color:teal" %> </small>
+          </div>
+        </div>
+        <hr>
+        <div class="w3-container">
           <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Your progress in </b><%= current_student.language%></p>
           <p>Listening</p>
           <div class="w3-light-grey w3-round-xlarge w3-small">

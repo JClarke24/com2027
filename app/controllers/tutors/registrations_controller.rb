@@ -40,7 +40,7 @@ class Tutors::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
@@ -61,4 +61,9 @@ class Tutors::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #  super(resource)
   # end
+
+  # The path used after edit.
+  def after_update_path_for(resource)
+    authenticated_student_profile_path(resource)
+  end
 end

@@ -9,7 +9,7 @@ class AddAdditionalInfoUsers < ActiveRecord::Migration[5.2]
     add_column :students, :job, :string, default: "Job"
     add_column :students, :address, :string, default: "City"
     add_column :students, :country, :string, default: "Country"
-    add_column :students, :language, :string, default: "Lamguage"
+    add_column :students, :language, :string, default: "Language"
 
   end
 end
