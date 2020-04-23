@@ -1,1 +1,68 @@
 <h1>Welcome to your student dashboard!</h1>
+
+<!-- shows language process
+or if a language hasn't been selected, lets student choose language -->
+<div id="language">
+  <h2>Your language progress</h2>
+  <% if @language %>
+  <h1> You're learning
+      <%=@language %>
+   </h1>
+  <% else %>
+  <p>You haven't chosen a language yet.</p>
+  <div id="langSelect">
+    <div class = "container">
+    <div class="col-sm-3">
+      French <br>
+      <%=image_tag("french.png")%><br>
+
+    </div>
+    <div class="col-sm-3">
+      Spanish <br>
+      <%=image_tag("spanish.png")%><br>
+    </div>
+    <div class="col-sm-3">
+      English <br>
+      <%=image_tag("english.png")%><br>
+    </div>
+    <div class="col-sm-3">
+      German <br>
+      <%=image_tag("germany.jpeg")%><br>
+    </div>
+    </div>
+    <div class="col-sm-3">
+        <%= button_to "Learn French", {action: "pickLanguage", params: {:lang => "French"}}, {class: 'btn'} %>
+    </div>
+    <div class="col-sm-3">
+      <%= button_to "Learn Spanish", {action: "pickLanguage", params: {:lang => "Spanish"}}, {class: 'btn'} %>
+    </div>
+    <div class="col-sm-3">
+    <%= button_to "Learn English", {action: "pickLanguage", params: {:lang => "English"}}, {class: 'btn'} %>
+      </div>
+    <div class="col-sm-3">
+        <%= button_to "Learn German", {action: "pickLanguage", params: {:lang => "German"}}, {class: 'btn'} %>
+  </div>
+  </div>
+  <% end %>
+</div>
+
+<br>
+<div class="spacer">
+
+</div>
+<!-- shows tutor info
+or if tutor hasn't been selected, allows student to find a tutor -->
+<div id="tutor">
+<h2>Your tutor progress </h2>
+<% if @tutor && @tutor_confirmed %>
+<%= @tutor.forename%> &nbsp;<%= @tutor.surname%>
+<%elsif @tutor %>
+<p>Your tutor request has been sent to <%= @tutor.forename %></p>
+<% else %>
+<% puts("Tutor id #{@tutor_id}") %>
+<p>You don't have a tutor yet. Pick one now to take your learning to the
+next level!</p>
+<button class = "btn"><a href="findTutor">Find a Tutor</a></button>
+<% end %>
+
+</div>

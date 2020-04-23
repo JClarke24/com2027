@@ -91,7 +91,7 @@
      }
 
      .logo{
-         width: 30%;
+         width: 40%;
      }
      a{
          color:white;
@@ -135,16 +135,69 @@
          text-align: center;
      }
 
+
      th{
        text-align: center;
      }
+     #language{
+
+       display: block;
+       width: 80%;
+       margin-left: 10%;
+       padding: 1em;
+     }
+     form{
+       select{
+         width: 10%;
+         text-align: center;
+         margin-left:45%;
+       }
+     }
+
+     #langSelect{
+       height: 80%;
+       width: 100%;
+
+       img{
+            width: 15vw;
+       }
+       .btn{
+
+       }
+     }
+     .container{
+       width: 100%;
+     }
+     .spacer{
+       height: 2vh;
+       width: 100%;
+       display: block;
+     }
+     #tutor{
+       display: block;
+       width: 80%;
+       margin-left: 10%;
+       margin-top: 2%;
+       h2{
+         text-align: center;
+       }
+     }
 
      header{
-
+       th{
+         color: $brown;
+       }
+       tr{
+         color: $lightyellow;
+       }
      }
 
      footer{
-
+       // keep footer at bottom of screen at all times
+       position: absolute;
+       bottom: 0%;
+       right: 0%;
+       padding:  0 2em;
      }
 .avatar {
   vertical-align: middle;

@@ -1,4 +1,10 @@
 
+<%= javascript_tag do %>
+  window.tutors = <%=raw Tutor.where(language: current_student.language).limit(100).to_json %>;
+  console.log(tutors);
+<% end %>
+<%= form_tag('requestTutor')  %>
+<%= hidden_field_tag 'tutor_id' %>
     <p></p>
     <h2 class = "lead">Match with tutors in your local area.</h2>
 
@@ -11,18 +17,23 @@
   <input type="text" id = "setRadiusTextKm" name = "Search radius (text/km)" min = "0.5" max = "50">
   <label for="Search radius (text/km)"> km</label>
    &nbsp; &#47;
-    <input type="text" id = "setRadiusTextMi" name = "Search radius (text/mi)" min = "0.5" max = "50">
+  <input type="text" id = "setRadiusTextMi" name = "Search radius (text/mi)" min = "0.5" max = "50">
   <label for="Search radius (text/mi)"> mi</label>
 
   <div id="map"></div>
+  <div class="hide">
+  </div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDN7VGKV5VcNNsh5bgwx1TCK-iOpK1k-6c&libraries=places&callback=initMap"></script>
  <script>
       // Note: This example requires that you consent to location sharing when
       // prompted by your browser. If you see the error "The Geolocation service
       // failed.", it means you probably did not give permission for the browser to
       // locate you.
-    var map, places, infoWindow;
+    var map, places;
+    var infoWindow;
      var autocomplete;
      var circle;
+     var iconSize;
        // Try HTML5 geolocation.
        $('#useloc').click(function() {
            getLocationGeo();
@@ -44,7 +55,8 @@
             radius: 10000,
             visible:false
           });
-        infoWindow = new google.maps.InfoWindow;
+          iconSize = new google.maps.Size(50, 50);
+
     // Create the autocomplete object and associate it with the UI input control.
         // Restrict the search to the default country, and to place type "cities".
         autocomplete = new google.maps.places.Autocomplete(
@@ -54,49 +66,55 @@
               componentRestrictions: countryRestrict
             });
         places = new google.maps.places.PlacesService(map);
-
         autocomplete.addListener('place_changed', onPlaceChanged);
+        infoWindow = new google.maps.InfoWindow();
+ }
 
-    var icon = {
-    url: "<%= asset_path('beelogo.png') %>",
-    scaledSize: new google.maps.Size(50, 50)// scaled size
+ initMap();
+ var icon = {
+ url: "<%= asset_path('beelogo.png') %>",
+ scaledSize: iconSize// scaled size
 
 };
-var marker = new google.maps.Marker({
-    position: {lat: 51.243781, lng: -0.589525},
-    map: map,
-    title: 'Bob',
-    icon: icon
-  });
+//stores the markers and their i values in a map
+//because the click listener is fired after the for loop, so it gets the value of i
+//as tutors.length which is invalid
+  var markerMap = new Map();
+for(var i = 0; i < tutors.length; i++){
+  var stringLoc = (tutors[i].location);
+  stringLoc= stringLoc.replace("(", "");
+  stringLoc =stringLoc.replace(")", "");
+  stringLoc= stringLoc.split(",");
+  var lat = parseFloat(stringLoc[0]);
+  var lng = parseFloat(stringLoc[1]);
+  markerMap.set(("marker"+i),i);
+  console.log("tutors[i]: "+ tutors[markerMap.get('marker'+i)].id);
+  eval("marker"+i+" = new google.maps.Marker({position: {lat:lat, lng:lng},map: map, icon:icon});");
+  eval("marker"+i+".setTitle('marker"+i+"');");
+  var iVal = 0;
+  // eval("marker"+i+".addListener('click', function(){"+"iVal = markerMap.get('marker'+i);$('#tutor_id').val(tutors[iVal]);"+
+  // "infoWindow.setContent("+"'<h4>eval(tutors[iVal].forename);</h4><h5> Teaches </h5>'"+
+  // ");infoWindow.open(map,marker"+i+")})");
+  //     }
+  currentMarker = getMarker(i);
+  currentMarker.addListener('click', function() {
+    markerName = this.get('title');
+    iVal = markerMap.get(markerName);
+    var currentTutor = tutors[iVal];
+    $('#tutor_id').val(tutors[iVal].id);
+        infoWindow.setContent('<h4 class="name">'+currentTutor.forename +
+                              '<h5 class = "languages"> Teaches '+ currentTutor.language + ' </h2>'+
+                              '<h6 class = "tutorDescription"> '+ currentTutor.description + ' </h6>'+
+                              "<input type= 'submit' name='commit' value='Request Tutor' data-disable-with='requestTutor' />"
+                              );
+        infoWindow.maxWidth = 20;
+        infoWindow.open(map, getMarker(iVal));
+      });
+    }
 
-  marker.addListener('click', function() {
-      infoWindow.setContent('<h4 class="name">Bob</h4>'+ '<img src = "https://cdn.ebaumsworld.com/2020/01/13/022201/86172798/lego-star-wars-profile-99.jpg" />'+
-                            '<h5 class = "languages"> Teaches French, English </h2>'+
-                            '<h6 class = "tutorDescription"> Salut! I\'m Bob and I love baguettes. Here\'s some really exciting stuff about me blah blah blah blah</h6>'+
-                            '<button class = "btn pickTutor"> <a href = "custom/url">Request This Tutor </a> </button>'
-);
-      infoWindow.maxWidth = 20;
-    infoWindow.open(map, marker);
-  });
-         var marker2 = new google.maps.Marker({
-    position: {lat: 51.238716, lng: -0.579532},
-    map: map,
-    title: 'Jane',
-    icon: icon
-  });
-
-  marker2.addListener('click', function() {
-      infoWindow.setContent('<h4 class="name">Jane</h4>'+ '<img src = "https://i.stack.imgur.com/34AD2.jpg" />'+
-                            '<h5 class = "languages"> Teaches Spanish </h2>'+
-                            '<h6 class = "tutorDescription"> Some information about me to convince you I\'m the right tutor for the job. Having a picture and some information about a potential tutor is likely to make users feel more comfortable picking a tutor, because they know what they\'re expecting.  </h6>'+
-                            '<button class = "btn pickTutor"> <a href = "tutoring/request">Request This Tutor </a> </button>'
-);
-      infoWindow.maxWidth = 20;
-    infoWindow.open(map, marker2);
-  });
-
-
-      }
+function getMarker(i){
+  return eval("marker"+i);
+}
 
      function getLocationGeo(){
 
@@ -176,6 +194,6 @@ var marker = new google.maps.Marker({
          circle.setCenter(map.getCenter());
          circle.setRadius(this.value*1609);
      }
+
+
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDN7VGKV5VcNNsh5bgwx1TCK-iOpK1k-6c&libraries=places&callback=initMap"
-        async defer></script>

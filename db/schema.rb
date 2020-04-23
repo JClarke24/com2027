@@ -29,6 +29,9 @@ ActiveRecord::Schema.define(version: 2020_04_21_151506) do
     t.string "address", default: "City"
     t.string "country", default: "Country"
     t.string "language", default: "Lamguage"
+    t.integer "tutor_id"
+    t.boolean "tutor_confirmed", default: false
+
     t.index ["email"], name: "index_students_on_email", unique: true
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
   end
@@ -53,6 +56,8 @@ ActiveRecord::Schema.define(version: 2020_04_21_151506) do
     t.string "country", default: "Country"
     t.string "description2", default: "What I offer?"
     t.string "language", default: "Language"
+    t.string "location", default: "(0.0, 0.0)"
+
     t.index ["email"], name: "index_tutors_on_email", unique: true
     t.index ["reset_password_token"], name: "index_tutors_on_reset_password_token", unique: true
   end
