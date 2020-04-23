@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Tutors::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  include Accessible_tutor
   # You should configure your model like this:
   # devise :omniauthable, omniauth_providers: [:twitter]
 

@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+</style>
+<body>
+
+<!-- Page Container -->
+<div class="w3-content w3-margin-top" style="max-width:1400px;">
+
+  <!-- The Grid -->
+  <div class="w3-row-padding">
+
+    <!-- Left Column -->
+    <div class="w3-third">
+
+      <div class="w3-white w3-text-grey w3-card-4">
+        <div class="w3-display-container">
+          <%= image_tag(current_tutor.image_url, style: "max-width:100%; max-height:100%") %>
+          <div class="w3-display-bottomleft w3-container w3-text-black">
+            <h2> <%= current_tutor.forename + " " + current_tutor.surname %> </h2>
+          </div>
+        </div>
+        <hr>
+        <div class="w3-display-container">
+          <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i><%= current_tutor.job %></p>
+          <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i><%= current_tutor.address + " " + current_tutor.country %></p>
+          <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i> <%= current_tutor.email %> </p>
+          <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i> <%= current_tutor.phone %> </p>
+          <br/>
+          <div class="w3-display-bottomleft w3-container">
+            <small> <%= link_to "Edit profile", :edit_tutor_registration, style: "color:teal" %> </small>
+          </div>
+        </div>
+        <hr>
+        <div class="w3-container">
+          <!-- Accordion -->
+          <div class="w3-card w3-round">
+            <div class="w3-white">
+              <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Tutees</button>
+              <div id="Demo1" class="w3-hide w3-container">
+                <p> List of the tutees accounts...</p>
+              </div>
+              <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Events</button>
+              <div id="Demo2" class="w3-hide w3-container">
+                <p>Some text..</p>
+              </div>
+              <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> My Quizzes</button>
+              <div id="Demo3" class="w3-hide w3-container">
+             <div class="w3-row-padding">
+             <br>
+               <div class="w3-half">
+                 <img src="/w3images/lights.jpg" style="width:100%" class="w3-margin-bottom">
+               </div>
+               <div class="w3-half">
+                 <img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
+               </div>
+               <div class="w3-half">
+                 <img src="/w3images/mountains.jpg" style="width:100%" class="w3-margin-bottom">
+               </div>
+               <div class="w3-half">
+                 <img src="/w3images/forest.jpg" style="width:100%" class="w3-margin-bottom">
+               </div>
+               <div class="w3-half">
+                 <img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
+               </div>
+               <div class="w3-half">
+                 <img src="/w3images/snow.jpg" style="width:100%" class="w3-margin-bottom">
+               </div>
+             </div>
+              </div>
+            </div>
+          </div>
+        </div><br>
+      </div><br>
+
+      <div class="w3-card w3-round w3-white w3-center">
+        <div class="w3-container">
+          <p>Upcoming Tutee Meeting:</p>
+          <img src="/w3images/forest.jpg" alt="Picture of the place of the meeting" style="width:100%;">
+          <p><strong>Name of the tutee</strong></p>
+          <p>What time </p>
+          <p><button class="w3-button w3-block w3-theme-l4">Info</button></p>
+        </div>
+      </div>
+      <br>
+
+      <div class="w3-card w3-round w3-white w3-center">
+        <div class="w3-container">
+          <p>Tutee Request</p>
+          <img src="/w3images/avatar6.png" alt="Avatar" style="width:50%"><br>
+          <span>Tutee Name</span>
+          <div class="w3-row w3-opacity">
+            <div class="w3-half">
+              <button class="w3-button w3-block w3-green w3-section" title="Accept"><i class="fa fa-check"></i></button>
+            </div>
+            <div class="w3-half">
+              <button class="w3-button w3-block w3-red w3-section" title="Decline"><i class="fa fa-remove"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+
+    <!-- End Left Column -->
+    </div>
+
+    <!-- Right Column -->
+    <div class="w3-twothird">
+
+      <div class="w3-container w3-card w3-white w3-margin-bottom">
+        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>About me</h2>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b> What I do?</b></h5>
+          <p> <%= current_tutor.description %> </p>
+          <hr>
+        </div>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>What I offer?</b></h5>
+          <p> <%= current_tutor.description2 %> </p>
+          <hr>
+        </div>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>What is my rating?</b></h5>
+          <p>How people rate me </p>
+          <hr>
+        </div>
+      </div>
+
+      <div class="w3-container w3-card w3-white">
+        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Education</h2>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>W3Schools.com</b></h5>
+          <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Forever</h6>
+          <p>Web Development! All I need to know in one place</p>
+          <hr>
+        </div>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>London Business School</b></h5>
+          <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2013 - 2015</h6>
+          <p>Master Degree</p>
+          <hr>
+        </div>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>School of Coding</b></h5>
+          <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2010 - 2013</h6>
+          <p>Bachelor Degree</p><br>
+        </div>
+      </div>
+
+    <!-- End Right Column -->
+    </div>
+
+
+
+  <!-- End Grid -->
+  </div>
+
+  <!-- End Page Container -->
+</div>
+<script>
+// Accordion
+function myFunction(id) {
+  var x = document.getElementById(id);
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+    x.previousElementSibling.className += " w3-theme-d1";
+  } else {
+    x.className = x.className.replace("w3-show", "");
+    x.previousElementSibling.className =
+    x.previousElementSibling.className.replace(" w3-theme-d1", "");
+  }
+}
+
+// Used to toggle the menu on smaller screens when clicking on the menu button
+function openNav() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+</body>
+</html>

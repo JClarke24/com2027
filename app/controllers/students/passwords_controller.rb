@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Students::PasswordsController < Devise::PasswordsController
+  include Accessible_student
   # GET /resource/password/new
   # def new
   #   super

@@ -4,7 +4,7 @@ class Tutors::RegistrationsController < Devise::RegistrationsController
   include Accessible_tutor
   skip_before_action :check_tutor, except: [:new, :create]
   # before_action :configure_sign_up_params, only: [:create]
-  # before_action :configure_account_update_params, only: [:update]
+  before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   # def new
@@ -40,7 +40,7 @@ class Tutors::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
@@ -48,9 +48,9 @@ class Tutors::RegistrationsController < Devise::RegistrationsController
   # end
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-  # end
+  def configure_account_update_params
+   devise_parameter_sanitizer.permit(:account_update, keys: [:forename, :surname, :dob, :phone, :description, :image, :job, :address, :country, :description2, :language])
+  end
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
@@ -59,6 +59,11 @@ class Tutors::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
-  #   super(resource)
+  #  super(resource)
   # end
+
+  # The path used after edit.
+  def after_update_path_for(resource)
+    authenticated_student_profile_path(resource)
+  end
 end

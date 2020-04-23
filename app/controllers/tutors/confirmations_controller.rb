@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Tutors::ConfirmationsController < Devise::ConfirmationsController
+  include Accessible_tutor
   # GET /resource/confirmation/new
   # def new
   #   super
