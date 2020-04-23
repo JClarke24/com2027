@@ -4,8 +4,14 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+student1:
+  email: student1@example.com
+  encrypted_password: <%= Student.new.send(:password_digest, 'student1') %>
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
+
+student2:
+  email: student2@example.com
+  encrypted_password: <%= Student.new.send(:password_digest, 'student2') %>
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
