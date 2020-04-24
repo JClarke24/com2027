@@ -1,13 +1,11 @@
 <h1>Welcome to your student dashboard!</h1>
 
-<!-- shows language process
+<!-- shows language progress
 or if a language hasn't been selected, lets student choose language -->
 <div id="language">
   <h2>Your language progress</h2>
-  <% if @language %>
-  <h1> You're learning
-      <%=@language %>
-   </h1>
+  <% if @language != "Language"%>
+  <h1> You're learning <%=@language %> </h1>
   <% else %>
   <p>You haven't chosen a language yet.</p>
   <div id="langSelect">
