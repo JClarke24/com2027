@@ -1,3 +1,4 @@
+<!-- stops the InvalidAuthenticityToken error -->
 <%= csrf_meta_tags %>
 <p>Drag the bee marker to the location you want prospective students to see. <br>
 Choose an area close to you, but be aware this is shared publicly so don't use your
@@ -23,6 +24,7 @@ home address.</p>
          getLocationGeo();
     });
     function initMap() {
+      //initialise map
       map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 54.8, lng: -4.6},
         zoom: 5,
@@ -40,6 +42,7 @@ home address.</p>
       map: map,
       title: 'Your location',
       icon: icon,
+      //draggable so that the user can drag the icon to their location
       draggable: true
     });
 
@@ -58,7 +61,7 @@ home address.</p>
 
 }
    function getLocationGeo(){
-
+     //if geolocation succeeds center the map on the location
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
           var pos = {
@@ -106,7 +109,7 @@ home address.</p>
       }
     }
 
-    //save the user's location when buttn is pressed
+    //save the user's location when button is pressed
     $('#map').click(function() {
         userPos = marker.getPosition();
         $('#location').val(userPos);
