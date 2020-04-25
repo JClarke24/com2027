@@ -54,7 +54,7 @@ class Tutors::DashboardsController < ApplicationController
     @student = Student.find(student_id)
     @student.tutor_confirmed = true
     @student.save
-    redirect_to dashboard_url
+    redirect_to authenticated_tutor_root_url
   end
 
   def rejectStudent
