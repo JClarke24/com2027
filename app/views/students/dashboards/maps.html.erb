@@ -86,23 +86,21 @@ for(var i = 0; i < tutors.length; i++){
   stringLoc =stringLoc.replace(")", "");
   stringLoc= stringLoc.split(",");
   var lat = parseFloat(stringLoc[0]);
-  var lng = parseFloat(stringLoc[1]);
+  var lng = parseFloat(stringLoc[1])
   markerMap.set(("marker"+i),i);
   console.log("tutors[i]: "+ tutors[markerMap.get('marker'+i)].id);
   eval("marker"+i+" = new google.maps.Marker({position: {lat:lat, lng:lng},map: map, icon:icon});");
   eval("marker"+i+".setTitle('marker"+i+"');");
+  //for the current value of i
   var iVal = 0;
-  // eval("marker"+i+".addListener('click', function(){"+"iVal = markerMap.get('marker'+i);$('#tutor_id').val(tutors[iVal]);"+
-  // "infoWindow.setContent("+"'<h4>eval(tutors[iVal].forename);</h4><h5> Teaches </h5>'"+
-  // ");infoWindow.open(map,marker"+i+")})");
-  //     }
+
   currentMarker = getMarker(i);
   currentMarker.addListener('click', function() {
     markerName = this.get('title');
     iVal = markerMap.get(markerName);
     var currentTutor = tutors[iVal];
     $('#tutor_id').val(tutors[iVal].id);
-        infoWindow.setContent('<h4 class="name">'+currentTutor.forename +
+        infoWindow.setContent('<h4 class="name">'+currentTutor.forename + " " +currentTutor.surname +
                               '<h5 class = "languages"> Teaches '+ currentTutor.language + ' </h2>'+
                               '<h6 class = "tutorDescription"> '+ currentTutor.description + ' </h6>'+
                               "<input type= 'submit' name='commit' value='Request Tutor' data-disable-with='requestTutor' />"
