@@ -33,7 +33,7 @@ en:
   home:
     home:
       title: BeeSmart
-      welcome: The social language app
+      welcome: Language learning, done right.
 
   shared:
     header:
@@ -41,6 +41,6 @@ en:
         logout: Logout
         profile: Profile
         sign_up: Sign Up
-        home: My dashboard
+        dashboard: Dashboard
     footer:
       title: BeeSmart

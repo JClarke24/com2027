@@ -7,11 +7,11 @@
         <tr>
           <td>
             <%= "#{current_student.email} |" %>
-            <%= link_to t('dashboard'), authenticated_student_root_path %>
+            <%= link_to t('shared.header.dashboard'), authenticated_student_root_path %>
             <%= '|' %>
-            <%= link_to t('profile'), authenticated_student_profile_path %>
+            <%= link_to t('shared.header.profile'), authenticated_student_profile_path %>
             <%= '|' %>
-            <%= link_to t('logout'), destroy_student_session_path, method: 'delete' %>
+            <%= link_to t('shared.header.logout'), destroy_student_session_path, method: 'delete' %>
           </td>
         </tr>
       <% elsif tutor_signed_in? %>
@@ -19,32 +19,32 @@
         <tr>
           <td>
             <%= "#{current_tutor.email} |" %>
-            <%= link_to t('dashboard'), authenticated_tutor_root_path %>
+            <%= link_to t('shared.header.dashboard'), authenticated_tutor_root_path %>
             <%= '|' %>
-            <%= link_to t('profile'), authenticated_tutor_profile_path %>
+            <%= link_to t('shared.header.profile'), authenticated_tutor_profile_path %>
             <%= '|' %>
-            <%= link_to t('logout'), destroy_tutor_session_path, method: 'delete' %>
+            <%= link_to t('shared.header.logout'), destroy_tutor_session_path, method: 'delete' %>
           </td>
         </tr>
       <% else %>
         <tr> <th> Students </th> <th> Tutors </th> </tr>
         <tr>
           <td>
-            <%= link_to t('login'), new_student_session_path %>
+            <%= link_to t('shared.header.login'), new_student_session_path %>
             <%= '|' %>
-            <%= link_to t('sign_up'), new_student_registration_path %>
+            <%= link_to t('shared.header.sign_up'), new_student_registration_path %>
           </td>
           <td>
-            <%= link_to t('login'), new_tutor_session_path %>
+            <%= link_to t('shared.header.login'), new_tutor_session_path %>
             <%= '|' %>
-            <%= link_to t('sign_up'), new_tutor_registration_path %>
+            <%= link_to t('shared.header.sign_up'), new_tutor_registration_path %>
           </td>
         </tr>
       <% end %>
     </table>
   </nav>
 
-  <h3> Language learning, done right. </h3>
+  <h3> <%= t('home.home.welcome') %> </h3>
 
   <% flash.each do |key, value| %>
     <%= content_tag :div, content_tag(:p, value), id: "#{key}" unless value.blank? %>

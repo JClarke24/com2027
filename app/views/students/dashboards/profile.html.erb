@@ -6,7 +6,7 @@
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <body>
-
+<button class = "btn edit-profile">  <%= link_to "Edit profile", :edit_student_registration, style: "color:orange" %></button>
 <!-- Page Container -->
 <div class="profile-content profile-margin-top" style="max-width:1400px;">
 
@@ -31,7 +31,7 @@
           <p><i class="fa fa-phone fa-fw profile-margin-right profile-large profile-text-orange"></i> <%= current_student.phone %> </p>
           <br/>
           <div class="profile-display-bottomleft profile-container">
-          <%= link_to "Edit profile", :edit_student_registration, style: "color:orange" %>
+
           </div>
         </div>
         <hr>
@@ -137,7 +137,7 @@
           <hr>
         </div>
         <div class="profile-container">
-          <h5 class="profile-opacity"><b>Topics to improvel</b></h5>
+          <h5 class="profile-opacity"><b>Topics to improve</b></h5>
           <p></p>
           <hr>
         </div>

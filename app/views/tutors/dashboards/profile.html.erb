@@ -7,7 +7,7 @@
 <!-- <link rel="stylesheet" href="https://www.profileschools.com/profilecss/4/profile.css"> -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <body>
-
+<button class = "btn edit-profile"><%= link_to "Edit profile", :edit_tutor_registration, style: "color:orange" %></button>
 <!-- Page Container -->
 <div class="profile-content profile-margin-top" style="max-width:1400px;">
 
@@ -31,8 +31,7 @@
           <p><i class="fa fa-envelope fa-fw profile-margin-right profile-large profile-text-orange"></i> <%= current_tutor.email %> </p>
           <p><i class="fa fa-phone fa-fw profile-margin-right profile-large profile-text-orange"></i> <%= current_tutor.phone %> </p>
           <br/>
-          <div class="profile-display-bottomleft profile-container">
-            <%= link_to "Edit profile", :edit_tutor_registration, style: "color:orange" %>
+          <div class="profile-display-bottomleft profile-container edit-profile">
           </div>
         </div>
         <hr>
@@ -87,26 +86,33 @@
         </div>
       </div>
       <br>
-
+      <ul>
       <div class="profile-card profile-round profile-white profile-center">
-        <div class="profile-container">
-          <p>Tutee Request</p>
-          <img src="/profileimages/avatar6.png" alt="Avatar" style="width:50%"><br>
-          <span>Tutee Name</span>
-          <div class="profile-row profile-opacity">
-            <div class="profile-half">
-              <button class="profile-button profile-block profile-green profile-section" title="Accept"><i class="fa fa-check"></i></button>
-            </div>
-            <div class="profile-half">
-              <button class="profile-button profile-block profile-red profile-section" title="Decline"><i class="fa fa-remove"></i></button>
-            </div>
-          </div>
-        </div>
+          <div class="profile-container">
+            <p>Tutee Request</p>
+     <% @students = Student.where(tutor_id: current_tutor.id, tutor_confirmed: false)
+        @students.each do |student| %>
+
+     <li><h6><%= student["forename"] %> &nbsp; <%= student["surname"] %></h6>
+       <div class="profile-row profile-opacity">
+         <div class="profile-half">
+       <%=button_to "Accept", {action: "acceptStudent", params: {:student_id => student["id"]}}, {class: 'profile-button profile-block profile-green profile-section'} %>
+       </div>
+         <div class="profile-half">
+     <%=button_to "Reject", {action: "rejectStudent", params: {:student_id => student["id"]}}, {class: 'profile-button profile-block profile-red profile-section'} %>
+   </li>
+
+ </div>
+    <%  end %>
+    <% if @students.length == 0%>
+      <p>You have no tutee requests at this time.</p>
+      <%end %>
+    </ul>
       </div>
       <br>
 
     <!-- End Left Column -->
-    </div>
+
 
     <!-- Right Column -->
     <div class="profile-twothird">
@@ -135,7 +141,7 @@
         <div class="profile-container">
           <h5 class="profile-opacity"><b>Sample</b></h5>
           <h6 class="profile-text-orange"><i class="fa fa-calendar fa-fw profile-margin-right"></i>Forever</h6>
-          <p>Web Development! All I need to know in one place</p>
+          <p>A description of one of my educations</p>
           <hr>
         </div>
         <div class="profile-container">
