@@ -4,11 +4,13 @@
 
     <link href='calendar_main.css' rel='stylesheet' />
     <link href='calendar_daygrid.css' rel='stylesheet' />
+    <link href='calendar_timegrid.css' rel='stylesheet' />
+
 
     <script src='calendar_main.js'></script>
     <script src='calendar_daygrid.js'></script>
     <script src='calendar_interaction.js'></script>
-
+    <script src='calendar_timegrid.js'></script>
 
     <script>
 
@@ -16,15 +18,28 @@
         var calendarEl = document.getElementById('calendar');
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
-          plugins: [ 'dayGrid', 'interaction' ],
+          plugins: [ 'dayGrid', 'timeGrid', 'interaction' ],
+          timeZone: 'local', 
+          header: {
+            left: 'dayGridMonth,timeGridWeek,timeGridDay',
+            center: 'title',
+            right: 'prev, next'
+          },
           events: [
             {
               title: 'Meeting',
-              start: '2020-05-20',
-              end: '2020-05-20',
-              daysOfWeek: [ 1, 2, 3, 4, 5 ]
+              start: '2020-05-20T09:00:00Z',
+              end: '2020-05-20T11:00:00Z',
+              daysOfWeek: [ 1, 2, 3, 4, 5 ],
+              allDay: false,
+              displayEventTime: true,
+              displayEventEnd: true
+
             }
-          ]
+          ],
+          eventColor: '#e88523',
+          handleWindowResize: true,
+          contentHeight: 600
         });
 
         calendar.render();
