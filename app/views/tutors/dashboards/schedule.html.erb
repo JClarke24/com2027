@@ -7,6 +7,8 @@
 
     <script src='calendar_main.js'></script>
     <script src='calendar_daygrid.js'></script>
+    <script src='calendar_interaction.js'></script>
+
 
     <script>
 
@@ -14,7 +16,15 @@
         var calendarEl = document.getElementById('calendar');
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
-          plugins: [ 'dayGrid' ]
+          plugins: [ 'dayGrid', 'interaction' ],
+          events: [
+            {
+              title: 'Meeting',
+              start: '2020-05-20',
+              end: '2020-05-20',
+              daysOfWeek: [ 1, 2, 3, 4, 5 ]
+            }
+          ]
         });
 
         calendar.render();

@@ -12,6 +12,7 @@
 //
 //= require calendar_main
 //= require calendar_daygrid
+//= require calendar_interaction
 //= require jquery
 //= require rails-ujs
 //= require activestorage
