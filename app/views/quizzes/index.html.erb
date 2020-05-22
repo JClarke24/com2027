@@ -1,0 +1,42 @@
+<h1>The Quiz Hive</h1>
+
+<% if !flash[:notice].blank? %>
+   <div class = "alert alert-info">
+      <%= flash[:notice] %>
+   </div>
+<% end %>
+
+<br />
+
+<%= link_to "New Quiz", new_quiz_path, class: "btn btn-primary" %>
+<br />
+<br />
+
+<table class = "table table-bordered table-striped" >
+   <thead>.
+      <tr>
+         <th>Tutor</th>
+         <th>Language</th>
+         <th>Level</th>
+         <th>Topic</th>
+         <th>Download Link</th>
+         <th> </th>
+      </tr>
+   </thead>
+
+   <tbody>
+      <% @quizzes.each do |quiz| %>
+
+         <tr>
+            <td><%= quiz.tutor.surname %></td>
+            <td><%= quiz.language %></td>
+            <td><%= quiz.level %></td>
+            <td><%= quiz.topic %></td>
+            <td><%= link_to "Download Quiz", quiz.attachment_url %></td>
+            <td><%= button_to "Delete",  quiz, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{quiz.topic}?" %></td>
+         </tr>
+
+      <% end %>
+   </tbody>
+
+</table>

@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_23_170317) do
+ActiveRecord::Schema.define(version: 2020_05_22_105723) do
+
+  create_table "quizzes", force: :cascade do |t|
+    t.string "tutor"
+    t.string "language"
+    t.string "topic"
+    t.string "level"
+    t.string "attachment"
+    t.integer "tutor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tutor_id"], name: "index_quizzes_on_tutor_id"
+  end
 
   create_table "students", force: :cascade do |t|
     t.string "email", default: "", null: false

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tutor: MyString
+  language: MyString
+  topic: MyString
+  level: MyString
+  attachment: MyString
+  tutor: one
+
+two:
+  tutor: MyString
+  language: MyString
+  topic: MyString
+  level: MyString
+  attachment: MyString
+  tutor: two
