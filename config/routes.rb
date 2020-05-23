@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'quizzes/index'
-  get 'quizzes/new'
-  get 'quizzes/create'
-  get 'quizzes/destroy'
   resources :quizzes, only: [:index, :new, :create, :destroy]
 
   devise_for :tutors, path: 'tutors', controllers: { registrations: "tutors/registrations", sessions: "tutors/sessions"}
@@ -30,6 +26,7 @@ Rails.application.routes.draw do
     post 'pickLanguage', to: 'students/dashboards#pickLanguage'
     post 'requestTutor', to: 'students/dashboards#requestTutor'
     get 'findTutor', to: 'students/dashboards#maps'
+    get 'quizzes', to: 'quizzes#index'
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

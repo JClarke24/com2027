@@ -1,10 +1,14 @@
 class QuizzesController < ApplicationController
   before_action :set_quiz, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_tutor!
+  before_action :authenticate_tutor!, only: [:show, :edit, :update, :destroy]
 
 
   def index
-    @quizzes = Quiz.tutor_quizzes(current_tutor)
+    if tutor_signed_in?
+      @quizzes = Quiz.tutor_quizzes(current_tutor)
+    else
+      @quizzes = Quiz.all
+    end
   end
 
   def new
@@ -15,14 +19,13 @@ class QuizzesController < ApplicationController
       cparams = quiz_params
       cparams[:tutor_id] = current_tutor.id
       @quiz = Quiz.new(cparams)
-    respond_to do |format|
+
       if @quiz.save
         redirect_to quizzes_path, notice: "The quiz #{@quiz.topic} has been uploaded."
       else
         render "new"
 
       end
-    end
   end
 
   def destroy

@@ -7,10 +7,12 @@
 <% end %>
 
 <br />
+<% if tutor_signed_in? %>
+  <%= link_to "New Quiz", new_quiz_path, class: "btn btn-primary" %>
 
-<%= link_to "New Quiz", new_quiz_path, class: "btn btn-primary" %>
 <br />
 <br />
+<% end %>
 
 <table class = "table table-bordered table-striped" >
    <thead>.
@@ -25,18 +27,29 @@
    </thead>
 
    <tbody>
+   <% if tutor_signed_in? %>
       <% @quizzes.each do |quiz| %>
-
          <tr>
             <td><%= quiz.tutor.surname %></td>
             <td><%= quiz.language %></td>
             <td><%= quiz.level %></td>
             <td><%= quiz.topic %></td>
-            <td><%= link_to "Download Quiz", quiz.attachment_url %></td>
+            <td><%= link_to "Download Quiz", quiz.attachment_url, style: "color:orange"  %></td>
             <td><%= button_to "Delete",  quiz, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{quiz.topic}?" %></td>
          </tr>
 
       <% end %>
+    <% else %>
+      <% @quizzes.each do |quiz| %>
+         <tr>
+            <td><%= quiz.tutor.surname %></td>
+            <td><%= quiz.language %></td>
+            <td><%= quiz.level %></td>
+            <td><%= quiz.topic %></td>
+            <td><%= link_to "Download Quiz", quiz.attachment_url, style: "color:orange" %></td>
+         </tr>
+      <% end %>
+    <% end %>
    </tbody>
 
 </table>

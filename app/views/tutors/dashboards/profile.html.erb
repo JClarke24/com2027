@@ -42,6 +42,13 @@
               <button onclick="myFunction('Demo1')" class="profile-button profile-block profile-theme-l1 profile-left-align"><i class="fa fa-circle-o-notch fa-fw profile-margin-right"></i> My Tutees</button>
               <div id="Demo1" class="profile-hide profile-container">
                 <p> List of the tutees accounts...</p>
+                <% @students = Student.where(tutor_id: current_tutor.id, tutor_confirmed: true)
+                   @students.each do |student| %>
+                <li><h6>
+                  <%= student["forename"] %> &nbsp; <%= student["surname"] %>
+                  <%=button_to "Contact", {action: "messages", params: {:student_id => student["id"]}}, {class: 'btn'} %>
+                </h6></li>
+               <%  end %>
               </div>
               <button onclick="myFunction('Demo2')" class="profile-button profile-block profile-theme-l1 profile-left-align"><i class="fa fa-calendar-check-o fa-fw profile-margin-right"></i> My Events</button>
               <div id="Demo2" class="profile-hide profile-container">
@@ -58,7 +65,7 @@
                <div class="profile-half">
                  <%= link_to "My Quizzes", quizzes_path, class: "btn btn-primary" %>
                </div>
-               
+
              </div>
               </div>
             </div>
