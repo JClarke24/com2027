@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :meetings
   devise_for :tutors, path: 'tutors', controllers: { registrations: "tutors/registrations", sessions: "tutors/sessions"}
   devise_for :students, path: 'students', controllers: { registrations: "students/registrations", sessions: "students/sessions"}
 

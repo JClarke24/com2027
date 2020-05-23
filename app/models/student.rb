@@ -8,5 +8,6 @@ class Student < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 belongs_to :Tutor, optional: true
+has_many :meetings
 validates :email, :forename, :surname, presence: true
 end
