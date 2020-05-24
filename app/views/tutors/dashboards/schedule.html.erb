@@ -19,12 +19,13 @@
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
           plugins: [ 'dayGrid', 'timeGrid', 'interaction' ],
-          timeZone: 'local', 
+          timeZone: 'local',
           header: {
             left: 'dayGridMonth,timeGridWeek,timeGridDay',
             center: 'title',
             right: 'prev, next'
           },
+          /*
           events: [
             {
               title: 'Meeting',
@@ -37,9 +38,9 @@
 
             }
           ],
+          */
+          events: '/meetings.json',
           eventColor: '#e88523',
-          handleWindowResize: true,
-          contentHeight: 600
         });
 
         calendar.render();
