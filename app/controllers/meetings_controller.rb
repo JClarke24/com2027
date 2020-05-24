@@ -4,7 +4,8 @@ class MeetingsController < ApplicationController
   # GET /meetings
   # GET /meetings.json
   def index
-    @meetings = Meeting.all
+    # @meetings = Meeting.all
+    @meetings = current_tutor.meetings
   end
 
   # GET /meetings/1
@@ -14,7 +15,9 @@ class MeetingsController < ApplicationController
 
   # GET /meetings/new
   def new
-    @meeting = Meeting.new
+    # @meeting = Meeting.new
+    @meeting = current_tutor.meetings.new
+    # @tutor_id = current_tutor.id
   end
 
   # GET /meetings/1/edit
@@ -24,7 +27,8 @@ class MeetingsController < ApplicationController
   # POST /meetings
   # POST /meetings.json
   def create
-    @meeting = Meeting.new(meeting_params)
+    # @meeting = Meeting.new(meeting_params)
+    @meeting = current_tutor.meetings.create(meeting_params)
 
     respond_to do |format|
       if @meeting.save
