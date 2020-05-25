@@ -1,6 +1,15 @@
+<style>
+.table1{
+  border-style: solid;
+  padding-right: 400px;
+  padding-left: 400px;
 
 
-
+  }
+.field{
+  position: center;
+}
+</style>
 <% if !@submission.errors.empty? %>
    <div class = "alert alert-error">
 
@@ -13,29 +22,46 @@
    </div>
 <% end %>
 
-<div class = "well">
+<div class="table1" >
 
    <%= form_for @submission, html: { multipart: true } do |f| %>
+
+   <div class="field">
      <%= f.label :description %>
      <%= f.text_field :description %>
+   </div>
+   <div class="field">
      <%= f.label :attachment2 %>
      <%= f.file_field :attachment2 %>
-
+   </div>
     <% if  student_signed_in? %>
-        <%= f.label :student %>
-        <%= f.text_field :student, value: current_student.id, disabled: true%>
-        <%= f.label :tutor %>
-        <%= f.text_field :tutor, value: current_student.tutor_id, disabled: true %>
+        <div class="field">
+          <%= f.label :student %>
+          <%= f.text_field :student, value: current_student.id, disabled: true%>
+        </div>
+        <div class="field">
+          <%= f.label :tutor %>
+          <%= f.text_field :tutor, value: current_student.tutor_id, disabled: true %>
+        </div>
     <% elsif tutor_signed_in? %>
-    <%= f.label :student %>
-    <%= f.text_field :student, value: current_tutor.submission  disabled: true%>
-    <%= f.label :tutor %>
-    <%= f.text_field :tutor, value: current_tutor.id, disabled: true %>
+    <div class="field">
+      <%= f.label :student %>
+        <% @students = Student.where(tutor_id: current_tutor.id, tutor_confirmed: true)
+           @students.each do |student| %>
+        <li><h6><%= student["forename"] %> &nbsp; <%= student["surname"] %>
+          <%=button_to "Choose", {action: "submission", params: {:stud => student['id']}}, {class: 'btn'} %>
+        </h6></li>
+        <%  end %>
+    </div>
+    <div class="field">
+        <%= f.label :tutor %>
+        <%= f.text_field :tutor, value: current_tutor.id, disabled: true %>
+    </div>
     <% else %>
     <% end %>
 
 
-      <%= f.submit "Save", class: "btn btn-primary" %>
+    <%= f.submit "Save", class: "btn btn-primary" %>
   <% end %>
 
 

@@ -28,14 +28,7 @@
  </h6></li>
 <%  end %>
 </ul>
-<h5>Submit feedback to your students</h5>
-<ul>
-<% @students = Student.where(tutor_id: current_tutor.id, tutor_confirmed: true)
-   @students.each do |student| %>
-<li><h6><%= student["forename"] %> &nbsp; <%= student["surname"] %>
-  <%=button_to "Submission", {action: "submission", params: {:student_id => student.id}}, {class: 'btn'} %>
-</h6></li>
-<%  end %>
+
 </ul>
   <% else %>
       <p>Set a location so you can start tutoring.</p>

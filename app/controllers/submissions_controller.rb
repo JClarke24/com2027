@@ -20,12 +20,14 @@ class SubmissionsController < ApplicationController
        cparams[:student_id] = current_student.id
        cparams[:tutor_id] = current_student.tutor_id
        @submission = Submission.new(cparams)
-       if @submission.save
-          redirect_to submissions_path, notice: "The submission #{@submission.description} has been uploaded."
-       else
-          render "new"
-       end
+     if @submission.save
+        redirect_to submissions_path, notice: "The submission #{@submission.description} has been uploaded."
+      else
+        render "new"
+      end
     else
+        #stud = params[:student_id]
+        #submission_params[:student] = stud
         cparams = submission_params
         cparams[:tutor_id] = current_tutor.id
         @submission = Submission.new(cparams)
@@ -38,19 +40,11 @@ class SubmissionsController < ApplicationController
     end
 
   def submission
-    stud = params[:student_id]
-    submission_params[:student_id] = stud
+
+    submission_params[:student_id] = params[:stud]
+    submission_params.save
   end
 
-
-
-    #f @submission.save
-    #   redirect_to submissions_path, notice: "The submission #{@submission.description} has been uploaded."
-    #else
-    #   render "new"
-    #end
-
-  #end
 
 
     def destroy
@@ -61,6 +55,6 @@ class SubmissionsController < ApplicationController
 
     private
        def submission_params
-         params.require(:submission).permit(:student, :tutor_id, :description, :attachment2)
+         params.require(:submission).permit(:student, :tutor, :description, :attachment2)
        end
     end
