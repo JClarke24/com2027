@@ -224,6 +224,26 @@ ul{
   height: 100%;
   margin:auto;
 }
+
+#meetingsTable {
+  margin:auto;
+}
+
+.linksTo{
+  background-color: $orange;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 30px 0;
+}
+
+td {
+  padding: 5px 0;
+}
+
+
+
 .profile-card,.profile-card-2{box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)}
 .profile-card-4,.profile-hover-shadow:hover{box-shadow:0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19)}
 .profile-margin{margin:16px!important}.profile-margin-top{margin-top:16px!important}.profile-margin-bottom{margin-bottom:16px!important}

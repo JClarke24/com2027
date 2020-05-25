@@ -2,14 +2,14 @@
 
 <h1>Meetings</h1>
 
-<table>
+<table id="meetingsTable">
   <thead>
     <tr>
       <th>Title</th>
       <th>Description</th>
-      <th>Tutor</th>
+      <!-- <th>Tutor</th>
       <th>Student</th>
-      <th>Location</th>
+      <th>Location</th> -->
       <th>Startdatetime</th>
       <th>Enddatetime</th>
       <th>Student accepted</th>
@@ -22,20 +22,21 @@
       <tr>
         <td><%= meeting.title %></td>
         <td><%= meeting.description %></td>
+        <!--
         <td><%= meeting.tutor_id %></td>
         <td><%= meeting.student_id %></td>
         <td><%= meeting.location %></td>
+        -->
         <td><%= meeting.startDateTime %></td>
         <td><%= meeting.endDateTime %></td>
         <td><%= meeting.student_accepted %></td>
-        <td><%= link_to 'Show', meeting %></td>
-        <td><%= link_to 'Edit', edit_meeting_path(meeting) %></td>
-        <td><%= link_to 'Destroy', meeting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="linksTo"><%= link_to 'Show', meeting %></td>
+        <td class="linksTo"><%= link_to 'Edit', edit_meeting_path(meeting) %></td>
+        <td class="linksTo"><%= link_to 'Delete', meeting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Meeting', new_meeting_path %>
+<%= link_to 'New Meeting', new_meeting_path, {:class => "linksTo"} %>

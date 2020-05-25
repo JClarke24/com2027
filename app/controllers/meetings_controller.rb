@@ -24,6 +24,7 @@ class MeetingsController < ApplicationController
   def edit
   end
 
+
   # POST /meetings
   # POST /meetings.json
   def create
