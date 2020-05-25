@@ -1,0 +1,44 @@
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+
+    <link href='calendar_main.css' rel='stylesheet' />
+    <link href='calendar_daygrid.css' rel='stylesheet' />
+    <link href='calendar_timegrid.css' rel='stylesheet' />
+
+
+    <script src='calendar_main.js'></script>
+    <script src='calendar_daygrid.js'></script>
+    <script src='calendar_interaction.js'></script>
+    <script src='calendar_timegrid.js'></script>
+
+    <script>
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          plugins: [ 'dayGrid', 'timeGrid', 'interaction' ],
+          aspectRatio: 2,
+          //contentHeight: 500,
+          header: {
+            left: 'dayGridMonth,timeGridWeek',
+            center: 'title',
+            right: 'prev, next'
+          },
+          events: '/meetings.json',
+          eventColor: '#e88523',
+        });
+
+        calendar.render();
+      });
+
+    </script>
+  </head>
+  <body>
+
+    <p>View your Tutor's availabilities</p>
+    <div id='calendar'></div>
+
+  </body>
+</html>

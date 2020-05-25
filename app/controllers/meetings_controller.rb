@@ -5,7 +5,12 @@ class MeetingsController < ApplicationController
   # GET /meetings.json
   def index
     # @meetings = Meeting.all
-    @meetings = current_tutor.meetings
+    if current_tutor
+      @meetings = current_tutor.meetings
+    elsif current_student
+      @meetings = Tutor.find(current_student.tutor_id).meetings
+      #@tutor = Tutor.find(current_student.tutor_id)
+    end
   end
 
   # GET /meetings/1
