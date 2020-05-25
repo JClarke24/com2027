@@ -101,6 +101,7 @@ hr.fc-divider {
 
 /* Tables
 --------------------------------------------------------------------------------------------------*/
+/*DAYS OF THE WEEK LABELS*/
 .fc table {
   width: 100%;
   box-sizing: border-box;
@@ -108,7 +109,7 @@ hr.fc-divider {
   table-layout: fixed;
   border-collapse: collapse;
   border-spacing: 0;
-  font-size: 1em;
+  font-size: 1.3em;
   /* normalize cross-browser */
 }
 
@@ -830,7 +831,7 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 }
 
 .fc-toolbar h2 {
-  font-size: 1.75em;
+  font-size: 3.75em;
   margin: 0;
 }
 
