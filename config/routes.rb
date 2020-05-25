@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
 
 
-  resources :submissions, only: [:index, :new, :create, :destroy]
-  post 'submission', to: 'submissions#submission'
+  resources :submissions
   resources :quizzes, only: [:index, :new, :create, :destroy]
 
   devise_for :tutors, path: 'tutors', controllers: { registrations: "tutors/registrations", sessions: "tutors/sessions"}

@@ -1,12 +1,14 @@
 class SubmissionsController < ApplicationController
-  #before_action :authenticate_tutor!
-  before_action :authenticate_student!, only: [ :edit, :update, :destroy]
+  before_action :authenticate_student!, only: [:new, :create, :destroy]
+  before_action :authenticate_tutor!, only: [:update, :edit]
 
   def index
     if student_signed_in?
         @submissions = Submission.student_submissions(current_student)
-    else
+    elsif tutor_signed_in?
         @submissions = Submission.tutor_submissions(current_tutor)
+    else
+      redirect_to root_path
     end
   end
 
@@ -15,46 +17,39 @@ class SubmissionsController < ApplicationController
   end
 
   def create
-    if student_signed_in?
-       cparams = submission_params
-       cparams[:student_id] = current_student.id
-       cparams[:tutor_id] = current_student.tutor_id
-       @submission = Submission.new(cparams)
-     if @submission.save
+      cparams = submission_params
+      cparams[:student_id] = current_student.id
+      cparams[:tutor_id] = current_student.tutor_id
+      @submission = Submission.new(cparams)
+      if @submission.save
         redirect_to submissions_path, notice: "The submission #{@submission.description} has been uploaded."
       else
         render "new"
       end
-    else
-        #stud = params[:student_id]
-        #submission_params[:student] = stud
-        cparams = submission_params
-        cparams[:tutor_id] = current_tutor.id
-        @submission = Submission.new(cparams)
-        if @submission.save
-           redirect_to submissions_path, notice: "The submission #{@submission.description} has been uploaded."
-        else
-           render "new"
-        end
-      end
-    end
-
-  def submission
-
-    submission_params[:student_id] = params[:stud]
-    submission_params.save
   end
 
+  def edit
+    @submission = Submission.find(params[:id])
+  end
 
-
-    def destroy
-       @submission = Submission.find(params[:id])
-       @submission.destroy
-       redirect_to submissions_path, notice:  "The submission #{@submission.description} has been deleted."
+  def update
+    @submission = Submission.find(params[:id])
+    cparams = submission_params
+    if @submission.update(cparams)
+      redirect_to submissions_path, notice: "The submission #{@submission.description} has been updated."
+    else
+      render "edit"
     end
+  end
 
-    private
-       def submission_params
-         params.require(:submission).permit(:student, :tutor, :description, :attachment2)
-       end
+  def destroy
+    @submission = Submission.find(params[:id])
+    @submission.destroy
+    redirect_to submissions_path, notice:  "The submission #{@submission.description} has been deleted."
+  end
+
+  private
+    def submission_params
+      params.require(:submission).permit(:student, :tutor, :description, :submission, :feedback)
     end
+  end

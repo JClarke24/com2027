@@ -12,6 +12,18 @@
 
 ActiveRecord::Schema.define(version: 2020_05_24_205633) do
 
+  create_table "admins", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_admins_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
   create_table "quizzes", force: :cascade do |t|
     t.string "tutor"
     t.string "language"
@@ -51,22 +63,12 @@ ActiveRecord::Schema.define(version: 2020_05_24_205633) do
     t.integer "student_id"
     t.integer "tutor_id"
     t.string "description"
-    t.string "attachment2"
+    t.string "submission"
+    t.string "feedback"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_submissions_on_student_id"
     t.index ["tutor_id"], name: "index_submissions_on_tutor_id"
-  end
-
-  create_table "submittions", force: :cascade do |t|
-    t.integer "student_id"
-    t.integer "tutor_id"
-    t.string "description"
-    t.string "attachment2"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["student_id"], name: "index_submittions_on_student_id"
-    t.index ["tutor_id"], name: "index_submittions_on_tutor_id"
   end
 
   create_table "tutors", force: :cascade do |t|

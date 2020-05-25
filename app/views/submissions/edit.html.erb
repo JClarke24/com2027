@@ -11,7 +11,7 @@
 }
 </style>
 
-<h1> Submit a Quiz </h1>
+<h1> Submit Feedback </h1>
 
 <% if !@submission.errors.empty? %>
    <div class = "alert alert-error">
@@ -31,12 +31,15 @@
 
    <div class="field">
      <%= f.label :description %>
-     <%= f.text_field :description %>
+     <%= f.text_field :description, disabled: true %>
    </div>
+
    <div class="field">
-     <%= f.label :submission %>
-     <%= f.file_field :submission %>
+     <%= f.label :feedback %>
+     <%= f.file_field :feedback %>
    </div>
+
+
 
     <%= f.submit "Save", class: "btn btn-primary" %>
   <% end %>

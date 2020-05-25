@@ -4,7 +4,8 @@ class CreateSubmissions < ActiveRecord::Migration[5.2]
       t.belongs_to :student, foreign_key: true
       t.belongs_to :tutor, foreign_key: true
       t.string :description
-      t.string :attachment2
+      t.string :submission
+      t.string :feedback
 
       t.timestamps
     end
