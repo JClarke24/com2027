@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+
+  resources :submissions, only: [:index, :new, :create, :destroy, :submission]
+
   resources :quizzes, only: [:index, :new, :create, :destroy]
 
   devise_for :tutors, path: 'tutors', controllers: { registrations: "tutors/registrations", sessions: "tutors/sessions"}
@@ -17,6 +20,7 @@ Rails.application.routes.draw do
     post 'acceptStudent', to: 'tutors/dashboards#acceptStudent'
     post 'rejectStudent', to: 'tutors/dashboards#rejectStudent'
     post 'messages', to: 'tutors/dashboards#messages'
+    post 'submission', to: 'tutors/dashboards#submission'
   end
 
   authenticated :student do

@@ -15,6 +15,7 @@ class QuizzesController < ApplicationController
     @quiz = Quiz.new
   end
 
+
   def create
       cparams = quiz_params
       cparams[:tutor_id] = current_tutor.id

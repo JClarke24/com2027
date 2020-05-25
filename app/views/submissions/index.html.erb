@@ -1,0 +1,44 @@
+<h1>Submissions#index</h1>
+<p>Find me in app/views/submissions/index.html.erb</p>
+
+
+
+<% if !flash[:notice].blank? %>
+   <div class = "alert alert-info">
+      <%= flash[:notice] %>
+   </div>
+<% end %>
+
+<br />
+
+<%= link_to "New Submissions", new_submission_path, class: "btn btn-primary" %>
+<br />
+<br />
+
+<table class = "table table-bordered table-striped">
+   <thead>.
+      <tr>
+         <th>Tutor</th>
+         <th>Student</th>
+         <th>Description</th>
+         <th>Download Link</th>
+         <th> </th>
+      </tr>
+   </thead>
+
+   <tbody>
+      <% @submissions.each do |submission| %>
+
+         <tr>
+            <td><%= submission.tutor.surname %></td>
+            <td><%= submission.student.surname %></td>
+            <td><%= submission.description %></td>
+
+            <td><%= link_to "Download Resume", submission.attachment2_url %></td>
+            <td><%= button_to "Delete",  submission, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{submission.description}?" %></td>
+         </tr>
+
+      <% end %>
+   </tbody>
+
+</table>

@@ -1,0 +1,42 @@
+
+
+
+<% if !@submission.errors.empty? %>
+   <div class = "alert alert-error">
+
+      <ul>
+         <% @submission.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+         <% end %>
+      </ul>
+
+   </div>
+<% end %>
+
+<div class = "well">
+
+   <%= form_for @submission, html: { multipart: true } do |f| %>
+     <%= f.label :description %>
+     <%= f.text_field :description %>
+     <%= f.label :attachment2 %>
+     <%= f.file_field :attachment2 %>
+
+    <% if  student_signed_in? %>
+        <%= f.label :student %>
+        <%= f.text_field :student, value: current_student.id, disabled: true%>
+        <%= f.label :tutor %>
+        <%= f.text_field :tutor, value: current_student.tutor_id, disabled: true %>
+    <% elsif tutor_signed_in? %>
+    <%= f.label :student %>
+    <%= f.text_field :student, value: current_tutor.submission  disabled: true%>
+    <%= f.label :tutor %>
+    <%= f.text_field :tutor, value: current_tutor.id, disabled: true %>
+    <% else %>
+    <% end %>
+
+
+      <%= f.submit "Save", class: "btn btn-primary" %>
+  <% end %>
+
+
+</div>
