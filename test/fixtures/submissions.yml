@@ -4,10 +4,12 @@ one:
   student: one
   tutor: one
   description: MyString
-  attachment2: MyString
+  submission: MyString
+  feedback: MyString
 
 two:
   student: two
   tutor: two
   description: MyString
-  attachment2: MyString
+  submission: MyString
+  feedback: MyString
