@@ -100,13 +100,15 @@ for(var i = 0; i < tutors.length; i++){
     iVal = markerMap.get(markerName);
     var currentTutor = tutors[iVal];
     $('#tutor_id').val(tutors[iVal].id);
-        infoWindow.setContent('<h4 class="name">'+currentTutor.forename + " " +currentTutor.surname +
-                              '<h5 class = "languages"> Teaches '+ currentTutor.language + ' </h2>'+
-                              '<h6 class = "tutorDescription"> '+ currentTutor.description + ' </h6>'+
-                              "<input type= 'submit' name='commit' value='Request Tutor' data-disable-with='requestTutor' />"
-                              );
-        infoWindow.maxWidth = 20;
-        infoWindow.open(map, getMarker(iVal));
+
+      infoWindow.setContent('<img class = "avatar" src = "'+ currentTutor.image.url.toString() + '" /><h4 class="name">'+currentTutor.forename + " " +currentTutor.surname +
+                            '<h5 class = "languages"> Teaches '+ currentTutor.language + ' </h2>'+
+                            '<h6 class = "tutorDescription"> '+ currentTutor.description + ' <br /> '+ currentTutor.description2 + '</h6>'+
+                            "<input type= 'submit' name='commit' value='Request Tutor' data-disable-with='requestTutor' />"
+                            );
+      infoWindow.maxWidth = 20;
+      infoWindow.open(map, getMarker(iVal));
+
       });
     }
 
