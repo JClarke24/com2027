@@ -1,0 +1,158 @@
+<style>
+body {
+	font-family: 'Lato', sans-serif;
+}
+
+
+
+#quiz {
+	margin-left: 10px;
+	background: #FFE4C4;
+	padding: 10px 20px 10px 20px;
+	width: 400px;
+	border-radius: 20px;
+	float: left;
+
+}
+
+input {
+	margin-bottom: 20px;
+	display: block;
+}
+
+#textbox {
+	height: 25px;
+	font-size: 16px;
+	border-radius: 5px;
+	border: none;
+	padding-left: 5px;
+}
+
+
+#button {
+	background: green;
+	border: none;
+	border-radius: 5px;
+	padding: 10px;
+	color: white;
+	font-size: 16px;
+	transition-duration: .5s;
+	margin-top: 15px;
+}
+
+
+
+#button:hover {
+	background: white;
+	border: 1px solid green;
+	color: black;
+	cursor: pointer;
+
+}
+
+#after_submit {
+	visibility: hidden;
+	background: #ff5459;
+	padding: 10px 20px 10px 20px;
+	width: 400px;
+	border-radius: 20px;
+	float: left;
+	margin-left: 20px;
+	font-size: 30px;
+
+
+}
+
+#picture {
+	width: 375px;
+	height: 245px;
+}
+
+
+
+#mc {
+	display: inline;
+}
+</style>
+<script>
+function check(){
+
+	var question1 = document.quiz.question1.value;
+	var question2 = document.quiz.question2.value;
+	var question3 = document.quiz.question3.value;
+	var correct = 0;
+
+
+	if (question1 == "three") {
+		correct++;
+}
+	if (question2 == "2") {
+		correct++;
+}
+	if (question3 == "have, be or will") {
+		correct++;
+	}
+
+	var pictures = ["assets/win.gif", "assets/meh.webp", "assets/lose.gif"];
+	var messages = ["Great job!", "That's just okay", "You really need to do better"];
+	var score;
+
+	if (correct == 0) {
+		score = 2;
+	}
+
+	if (correct > 0 && correct < 3) {
+		score = 1;
+	}
+
+	if (correct == 3) {
+		score = 0;
+	}
+
+
+	document.getElementById("after_submit").style.visibility = "visible";
+	document.getElementById("message").innerHTML = messages[score];
+	document.getElementById("number_correct").innerHTML = "You got " + correct + " correct.";
+	document.getElementById("picture").src = pictures[score];
+	}
+
+</script>
+
+<h1>Do you want to become part of BeeSmart as a tutor</h1>
+<h2>You need to solve any of the tests before you are allowed to sign in as a tutor</h2
+<h2>If you pass the test you will be shown a link to sign in as a tutor</h2>
+
+
+<div class="field">
+<h1>English test</h1>
+<form id = "quiz" name = "quiz">
+
+
+<p class = "questions">There are ________ main verb tenses in English </p>
+<input id = "textbox" type = "text" name = "question1">
+
+<p class = "questions">English has ________ ways of forming a tense from the verb alone</p>
+<input type = "radio" id = "mc" name = "question2" value = "2"> 2<br>
+<input type = "radio" id = "mc" name = "question2" value = "3"> 3<br>
+
+<p class = "questions">To form other verb tenses, you have to add a form of _______ in front of the verb</p>
+
+<input type = "radio" id = "mc" name = "question3" value = "have, be or will"> have, be or will<br>
+<input type = "radio" id = "mc" name = "question3" value = "have"> have<br>
+
+
+<input id = "button" type = "button" value = "I'm finished!" onclick = "check();">
+
+
+</form>
+
+<div id = "after_submit">
+<p id = "number_correct"></p>
+<p id = "message"></p>
+<img id = "picture">
+</div>
+<div  class="myBtn">
+</div>
+
+</div>
+<%= link_to "Back", :back,  :class => "btn" %>

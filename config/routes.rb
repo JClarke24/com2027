@@ -36,5 +36,9 @@ Rails.application.routes.draw do
 
   #Home page is the root
   root 'home#home'
+  get 'home/english'
+  get 'home/spanish'
+  get 'home/german'
+  get 'home/french'
 
 end
