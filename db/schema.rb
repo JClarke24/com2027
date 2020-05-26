@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_23_170317) do
+ActiveRecord::Schema.define(version: 2020_05_24_205633) do
+
+  create_table "quizzes", force: :cascade do |t|
+    t.string "tutor"
+    t.string "language"
+    t.string "topic"
+    t.string "level"
+    t.string "attachment"
+    t.integer "tutor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tutor_id"], name: "index_quizzes_on_tutor_id"
+  end
 
   create_table "students", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -33,6 +45,18 @@ ActiveRecord::Schema.define(version: 2020_04_23_170317) do
     t.boolean "tutor_confirmed", default: false
     t.index ["email"], name: "index_students_on_email", unique: true
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
+  end
+
+  create_table "submissions", force: :cascade do |t|
+    t.integer "student_id"
+    t.integer "tutor_id"
+    t.string "description"
+    t.string "submission"
+    t.string "feedback"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_submissions_on_student_id"
+    t.index ["tutor_id"], name: "index_submissions_on_tutor_id"
   end
 
   create_table "tutors", force: :cascade do |t|

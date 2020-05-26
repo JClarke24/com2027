@@ -1,0 +1,48 @@
+<style>
+.table1{
+  border-style: solid;
+  padding-right: 400px;
+  padding-left: 400px;
+
+
+  }
+.field{
+  position: center;
+}
+</style>
+
+<h1> Submit Feedback </h1>
+
+<% if !@submission.errors.empty? %>
+   <div class = "alert alert-error">
+
+      <ul>
+         <% @submission.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+         <% end %>
+      </ul>
+
+   </div>
+<% end %>
+
+<div class="table1" >
+
+   <%= form_for @submission, html: { multipart: true } do |f| %>
+
+   <div class="field">
+     <%= f.label :description %>
+     <%= f.text_field :description, disabled: true %>
+   </div>
+
+   <div class="field">
+     <%= f.label :feedback %>
+     <%= f.file_field :feedback %>
+   </div>
+
+
+
+    <%= f.submit "Save", class: "btn btn-primary" %>
+  <% end %>
+
+
+</div>

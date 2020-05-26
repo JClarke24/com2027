@@ -1,0 +1,41 @@
+<h1> Submissions </h1>
+
+<% if student_signed_in? %>
+<%= link_to "New Submissions", new_submission_path, class: "btn btn-primary" %>
+<br />
+<br />
+<% end %>
+
+<table class = "table table-bordered table-striped">
+   <thead>.
+      <tr>
+         <th>Tutor</th>
+         <th>Student</th>
+         <th>Description</th>
+         <th>Submission</th>
+         <th>Feedback</th>
+         <th> </th>
+      </tr>
+   </thead>
+
+   <tbody>
+      <% @submissions.each do |submission| %>
+
+         <tr>
+            <td><%= submission.tutor.surname %></td>
+            <td><%= submission.student.surname %></td>
+            <td><%= submission.description %></td>
+
+            <td><%= link_to "Download submission", submission.submission_url, class: "download-link" %></td>
+            <td><%= link_to "Download feedback", submission.feedback_url, class: "download-link" %></td>
+            <% if student_signed_in? %>
+              <td><%= button_to "Delete",  submission, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{submission.description}?" %></td>
+            <% elsif tutor_signed_in? %>
+              <td><%= link_to "Submit Feedback", edit_submission_path(submission), class: "download-link" %></td>
+            <% end %>
+         </tr>
+
+      <% end %>
+   </tbody>
+
+</table>

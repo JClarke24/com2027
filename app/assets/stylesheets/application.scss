@@ -106,6 +106,13 @@
          color: white;
      }
 
+     .download-link {
+       color: orange;
+   }
+     .download-link:visited{
+       color: orange;
+     }
+
      #navbar{
          background-color: $orange;
          padding: 1em;
