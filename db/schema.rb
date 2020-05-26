@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_23_231330) do
+ActiveRecord::Schema.define(version: 2020_05_26_164544) do
 
   create_table "meetings", force: :cascade do |t|
     t.string "title", null: false
@@ -44,6 +44,10 @@ ActiveRecord::Schema.define(version: 2020_05_23_231330) do
     t.string "country", default: "Country"
     t.integer "tutor_id"
     t.boolean "tutor_confirmed", default: false
+    t.string "name"
+    t.string "access_token"
+    t.datetime "expires_at"
+    t.string "refresh_token"
     t.index ["email"], name: "index_students_on_email", unique: true
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
   end
