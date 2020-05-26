@@ -10,7 +10,7 @@
 
   <br />
   <input id="autocomplete" placeholder="Enter a city" type="text"> &nbsp;or
-  <button class= 'btn' id = 'useloc'>Use My Location</button>
+  <button class= 'btn' id = 'useloc' type = "button">Use My Location</button>
   <br />
   <label for="Search radius"> Set radius:</label>
   <input type="range" id = "setRadiusSlider" name = "Search radius" min = "0.5" max = "50"  value = "2" step = "0.5">
@@ -100,13 +100,15 @@ for(var i = 0; i < tutors.length; i++){
     iVal = markerMap.get(markerName);
     var currentTutor = tutors[iVal];
     $('#tutor_id').val(tutors[iVal].id);
-        infoWindow.setContent('<h4 class="name">'+currentTutor.forename + " " +currentTutor.surname +
-                              '<h5 class = "languages"> Teaches '+ currentTutor.language + ' </h2>'+
-                              '<h6 class = "tutorDescription"> '+ currentTutor.description + ' </h6>'+
-                              "<input type= 'submit' name='commit' value='Request Tutor' data-disable-with='requestTutor' />"
-                              );
-        infoWindow.maxWidth = 20;
-        infoWindow.open(map, getMarker(iVal));
+
+      infoWindow.setContent('<img class = "avatar" src = "'+ currentTutor.image.url.toString() + '" /><h4 class="name">'+currentTutor.forename + " " +currentTutor.surname +
+                            '<h5 class = "languages"> Teaches '+ currentTutor.language + ' </h2>'+
+                            '<h6 class = "tutorDescription"> '+ currentTutor.description + ' <br /> '+ currentTutor.description2 + '</h6>'+
+                            "<input type= 'submit' name='commit' value='Request Tutor' data-disable-with='requestTutor' />"
+                            );
+      infoWindow.maxWidth = 20;
+      infoWindow.open(map, getMarker(iVal));
+
       });
     }
 

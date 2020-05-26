@@ -33,4 +33,6 @@ class Students::DashboardsController < ApplicationController
     redirect_to authenticated_student_root_url
   end
 
+
+
 end

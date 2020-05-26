@@ -18,4 +18,7 @@ class StudentTest < ActiveSupport::TestCase
     student.save
     assert student.valid?
   end
+
+
+
 end
