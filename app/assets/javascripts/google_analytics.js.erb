@@ -1,6 +1,6 @@
 document.addEventListener('turbolinks:load', function(event) {
   if (typeof gtag === 'function') {
-    gtag('config', '<%= Rails.application.credentials.dig(:google_analytics) %>', {
+    gtag('config', 'UA-167634376-1', {
       'page_location': event.data.url
     })
   }
