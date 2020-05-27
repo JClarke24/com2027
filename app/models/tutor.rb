@@ -1,6 +1,6 @@
 class Tutor < ApplicationRecord
 
-  enum approval: [:approved, :unapproved]
+  enum approval: [:unapproved, :approved]
   after_initialize :set_default_approval, :if => :new_record?
     def set_default_approval
       self.approval ||= :approved
