@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  devise_for :admins
   resources :submissions
   resources :quizzes, only: [:index, :new, :create, :destroy]
 
