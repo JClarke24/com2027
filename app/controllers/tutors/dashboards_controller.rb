@@ -73,7 +73,7 @@ class Tutors::DashboardsController < ApplicationController
   def check_approval
     if current_tutor.unapproved?
       flash[:notice] = "Pass the test to become an approved tutor"
-      redirect_to(quiz_path)
+      redirect_to(tutor_sign_up_test_path)
     end
   end
 

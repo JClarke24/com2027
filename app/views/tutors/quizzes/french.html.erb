@@ -1,0 +1,144 @@
+<style>
+	#quiz {
+	margin-left: 10px;
+	background: #FFE4C4;
+	padding: 10px 20px 10px 20px;
+	width: 400px;
+	border-radius: 20px;
+	float: left;
+}
+
+input {
+	margin-bottom: 20px;
+	display: block;
+}
+
+#textbox {
+	height: 25px;
+	font-size: 16px;
+	border-radius: 5px;
+	border: none;
+	padding-left: 5px;
+}
+
+
+#button {
+	background: green;
+	border: none;
+	border-radius: 5px;
+	padding: 10px;
+	color: white;
+	font-size: 16px;
+	transition-duration: .5s;
+	margin-top: 15px;
+}
+
+#button:hover {
+	background: white;
+	border: 1px solid green;
+	color: black;
+	cursor: pointer;
+}
+
+#after_submit {
+	visibility: hidden;
+	background: #ff5459;
+	padding: 10px 20px 10px 20px;
+	width: 400px;
+	border-radius: 20px;
+	float: left;
+	margin-left: 20px;
+	font-size: 30px;
+}
+
+#start, #refresh {
+	visibility: hidden;
+}
+
+#picture {
+	width: 375px;
+	height: 245px;
+}
+
+#mc {
+	display: inline;
+}
+</style>
+<script>
+	function check(){
+
+		var question1 = document.quiz.question1.value;
+		var question2 = document.quiz.question2.value;
+		var question3 = document.quiz.question3.value;
+		var correct = 0;
+
+		if (question1 == "Plus-que-parfait") {
+			correct++;
+		}
+		if (question2 == "ent") {
+			correct++;
+		}
+		if (question3 == "Faux") {
+			correct++;
+		}
+
+		var messages = ["Great job!", "That's just okay", "You really need to do better"];
+		var score;
+
+
+		if (correct == 0) {
+			score = 2;
+			document.getElementById("refresh").style.visibility = "visible"
+		}
+
+		if (correct > 0 && correct < 3) {
+			score = 1;
+			document.getElementById("refresh").style.visibility = "visible"
+		}
+
+		if (correct == 3) {
+			score = 0;
+			document.getElementById("start").style.visibility = "visible"
+		}
+
+		document.getElementById("after_submit").style.visibility = "visible";
+  	document.getElementById("message").innerHTML = messages[score];
+  	document.getElementById("number_correct").innerHTML = "You got " + correct + " correct.";
+  }
+
+</script>
+
+<h2>If you pass the test you will be able to proceed</h2>
+<h2>Status: <%= current_tutor.approval %></h2>
+
+<div class="field">
+<h1>French test</h1>
+<form id = "quiz" name = "quiz">
+
+
+<p class = "questions">A quel temps est conjuguer le verbe dans la phrase: Nous étions partis à six heures du matin.</p>
+<input type = "radio" id = "mc" name = "question1" value ="Imparfait"> Imparfait<br>
+<input type = "radio" id = "mc" name = "question1" value ="Plus-que-parfait"> Plus-que-parfait<br>
+<input type = "radio" id = "mc" name = "question1" value ="Passé composé"> Passé composé<br>
+
+<p class = "questions">Compléter la terminaison: Mes freres et soeurs n'arret___ pas de m'embeter!</p>
+<input id = "textbox" type = "text" name = "question2">
+
+<p class = "questions">Avec un participe passé, l'auxiliaire "avoir" s'accorde toujours en genre et en nombre.</p>
+<input type = "radio" id = "mc" name = "question3" value = "Vrai"> Vrai<br>
+<input type = "radio" id = "mc" name = "question3" value = "Faux"> Faux<br>
+
+
+<input id = "button" type = "button" value = "I'm finished!" onclick = "check();">
+
+</form>
+
+<div id = "after_submit">
+<p id = "number_correct"></p>
+<p id = "message"></p>
+<button id = "refresh", class ="btn"><%= link_to "Refresh", "" %></button>
+<button id = "start", class ="btn"><%= link_to "Get Started", tutor_success_path %></button>
+</div>
+</div>
+
+<%= link_to "Back", :back,  :class => "btn" %>

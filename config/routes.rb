@@ -20,6 +20,13 @@ Rails.application.routes.draw do
     post 'rejectStudent', to: 'tutors/dashboards#rejectStudent'
     post 'messages', to: 'tutors/dashboards#messages'
 
+    get 'tutortest', to: 'tutors/quizzes#tutortest', as: :tutor_sign_up_test
+    get 'tutortest/english', to: 'tutors/quizzes#english', as: :tutor_english_test
+    get 'tutortest/spanish', to: 'tutors/quizzes#spanish', as: :tutor_spanish_test
+    get 'tutortest/german', to: 'tutors/quizzes#german', as: :tutor_german_test
+    get 'tutortest/french', to: 'tutors/quizzes#french', as: :tutor_french_test
+    get 'tutortest/success', to: 'tutors/quizzes#success', as: :tutor_success
+
   end
 
   authenticated :student do
