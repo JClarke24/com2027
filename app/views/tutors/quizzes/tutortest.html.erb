@@ -1,0 +1,50 @@
+<style>
+.card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+  padding: 2px 16px;
+}
+</style>
+
+<h1>Do you want to become part of BeeSmart as a tutor</h1>
+<h2>You need to solve any of the tests before you can start using Beesmart</h2
+<h2>Current status: <%= current_tutor.approval %></h2>
+
+    <div class="card"><br/>
+      <%= image_tag("spanish.png", size: "200x160") %>
+      <div class="container">
+        <h4><b>Spanish</b></h4>
+        <button class = "btn"><%= link_to "Spanish Test", tutor_spanish_test_path %></button>
+      </div>
+    </div>
+    <div class="card"><br/>
+      <%= image_tag("germany.jpeg", size: "200x160") %>
+      <div class="container">
+        <h4><b>German</b></h4>
+        <button class = "btn"><%= link_to "German Test", tutor_german_test_path %></button>
+      </div>
+    </div>
+    <div class="card"><br/>
+      <%= image_tag("french.png", size: "200x160") %>
+      <div class="container">
+        <h4><b>French</b></h4>
+        <button class = "btn"><%= link_to "French Test", tutor_french_test_path %></button>
+      </div>
+    </div>
+    <div class="card"><br/>
+      <%= image_tag("english.png", size: "200x160") %>
+      <div class="container">
+        <h4><b>English</b></h4>
+        <button class = "btn"><%= link_to "English Test", tutor_english_test_path %></button>
+      </div>
+    </div>
