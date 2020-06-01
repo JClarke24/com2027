@@ -54,13 +54,17 @@ or if tutor hasn't been selected, allows student to find a tutor -->
 <h2>Your tutor progress </h2>
 <% if @tutor && @tutor_confirmed %>
 <%= @tutor.forename%> &nbsp;<%= @tutor.surname%>
+Current rating: <%=@tutor.rating %>
 <h3>Rate your tutor</h3>
-<span id = "star1" class="fa fa-star checked"></span>
-<span id = "star2" class="fa fa-star checked"></span>
-<span id = "star3" class="fa fa-star checked"></span>
-<span id = "star4" class="fa fa-star"></span>
-<span id = "star5" class="fa fa-star"></span>
-
+<%= form_tag('rateTutor')  %>
+<%= hidden_field_tag 'tutor_rating' %>
+<span id = "star1" class="fa fa-star unchecked"></span>
+<span id = "star2" class="fa fa-star unchecked"></span>
+<span id = "star3" class="fa fa-star unchecked"></span>
+<span id = "star4" class="fa fa-star unchecked"></span>
+<span id = "star5" class="fa fa-star unchecked"></span>
+<br>
+<%= submit_tag "Submit rating" %>
 <%elsif @tutor %>
 <p>Your tutor request has been sent to <%= @tutor.forename %></p>
 <% elsif @language != "Language"%>
@@ -72,7 +76,35 @@ next level!</p>
 <% end %>
 
 </div>
-
+<script>
+var list = ['star1','star2','star3','star4','star5'];
+list.forEach(function(element) {
+document.getElementById(element).addEventListener("click", function(){
+    var cls=document.getElementById(element).className;
+    if(cls.includes("unchecked")){
+document.getElementById(element).classList.replace("unchecked", "checked");
+//if star 4 is selected we want stars 1-3 to be selected too
+position = list.indexOf(element);
+if(position > 0){
+  for(i = 0; i < position; i++){
+    document.getElementById(list[i]).classList.replace("unchecked", "checked");
+    $('#tutor_rating').val(position+1);
+  }
+}
+}
+else{
+document.getElementById(element).classList.replace("checked", "unchecked");
+//if star 4 is deselected we want stars 1-3 to be deselected too
+position = list.indexOf(element);
+  console.log(position);
+  for(i = 4; i >= position; i--){
+    document.getElementById(list[i]).classList.replace("checked", "unchecked");
+    $('#tutor_rating').val(position);
+}
+}
+  });
+});
+</script>
 <br>
 <div class="spacer">
 

@@ -5,6 +5,7 @@ class Students::DashboardsController < ApplicationController
     if current_student
       @language = current_student.language
       @tutor = Tutor.find(current_student.tutor_id)
+      current_rating = @tutor.rating
       @tutor_confirmed = current_student.tutor_confirmed
     end
 
@@ -33,6 +34,15 @@ class Students::DashboardsController < ApplicationController
     redirect_to authenticated_student_root_url
   end
 
-
-
+  def rateTutor
+    tutor = Tutor.find(current_student.tutor_id)
+    rating = params[:tutor_rating].to_i
+    current_rating = tutor.rating.to_f
+    num_rates = tutor.num_rates.to_i
+    new_rating = (current_rating + rating)/(num_rates + 1)
+    tutor.rating = new_rating
+    tutor.num_rates = num_rates + 1
+    tutor.save!
+    redirect_to authenticated_student_root_url
+  end
 end

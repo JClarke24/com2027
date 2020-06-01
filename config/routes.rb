@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   authenticated :student do
     root 'students/dashboards#home', as: :authenticated_student_root
     get 'profile', to: 'students/dashboards#profile', as: :authenticated_student_profile
-
+    post 'rateTutor', to: 'students/dashboards#rateTutor'
     post 'pickLanguage', to: 'students/dashboards#pickLanguage'
     post 'requestTutor', to: 'students/dashboards#requestTutor'
     get 'findTutor', to: 'students/dashboards#maps'
