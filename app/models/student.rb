@@ -1,5 +1,5 @@
 class Student < ApplicationRecord
-
+  rating as: :author
   mount_uploader :image, ImageUploader # Tells rails to use this uploader for this model
 
   # Include default devise modules. Others available are:

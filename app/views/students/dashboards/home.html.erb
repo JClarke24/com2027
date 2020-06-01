@@ -54,6 +54,13 @@ or if tutor hasn't been selected, allows student to find a tutor -->
 <h2>Your tutor progress </h2>
 <% if @tutor && @tutor_confirmed %>
 <%= @tutor.forename%> &nbsp;<%= @tutor.surname%>
+<h3>Rate your tutor</h3>
+<span id = "star1" class="fa fa-star checked"></span>
+<span id = "star2" class="fa fa-star checked"></span>
+<span id = "star3" class="fa fa-star checked"></span>
+<span id = "star4" class="fa fa-star"></span>
+<span id = "star5" class="fa fa-star"></span>
+
 <%elsif @tutor %>
 <p>Your tutor request has been sent to <%= @tutor.forename %></p>
 <% elsif @language != "Language"%>

@@ -69,3 +69,6 @@ gem 'devise'
 gem 'carrierwave'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'modernizr-rails'
+#for rating
+gem 'rating'
+gem 'font-awesome-rails'

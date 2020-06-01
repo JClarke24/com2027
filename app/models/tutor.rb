@@ -1,5 +1,5 @@
 class Tutor < ApplicationRecord
-
+  rating as: :resource
   enum approval: [:unapproved, :approved]
   after_initialize :set_default_approval, :if => :new_record?
     def set_default_approval
