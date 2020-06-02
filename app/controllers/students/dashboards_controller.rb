@@ -6,7 +6,11 @@ class Students::DashboardsController < ApplicationController
       @language = current_student.language
       @tutor = Tutor.find(current_student.tutor_id)
       @student = current_student
+      @forename = @tutor.forename
+      @surname = @tutor.surname
       @tutor_confirmed = current_student.tutor_confirmed
+      @rated = current_student.rated
+      @current_rating = current_student.current_rating
     end
 
   rescue ActiveRecord::RecordNotFound
@@ -55,5 +59,30 @@ class Students::DashboardsController < ApplicationController
     end
     tutor.save!
     redirect_to authenticated_student_root_url
+  end
+
+  def flag
+    @tutor = Tutor.find(current_student.tutor_id)
+  end
+
+  def sendFlag
+    #the student is reporting their tutor; save the tutor's id and their tutor status
+    user_id = Tutor.find(current_student.tutor_id)
+    user_type = 'tutor'
+    reason = params[:flag_reason]
+    description = params[:flag_desc]
+    #save the params as a new report
+    report = Report.new
+    report.user_id = user_id
+    report.user_type = user_type
+    report.reason = reason
+    report.description = description
+    report.save!
+    #deallocate student from their tutor
+    current_student.tutor_id = nil
+    current_student.tutor_confirmed = false
+    current_student.save!
+    @student = current_student
+    redirect_to authenticated_student_root_url, notice: "Thank you for your report. You have been deregistered from your tutor and the admins will investigate them."
   end
 end

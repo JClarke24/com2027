@@ -1,0 +1,16 @@
+<h3>Flag <%=@tutor.forename %> &nbsp; <%=@tutor.surname %></h3>
+<%= form_tag({:action => 'sendFlag'}, {:id => 'flagForm'})  %>
+<div class="field">
+  <%= label_tag :flag_reason, "Why are you flagging this tutor?" %><br />
+  <%= select_tag :flag_reason,  options_for_select([["Their profile is fake / they're not who they say they are ", 'impersonation'], ['Inappropriate content', 'inappropriate'], ['They made me feel unsafe', 'unsafe'], ['Other', 'other']]) %>
+</div>
+<br>
+<div class="field">
+  <%= label_tag :flag_desc, "Tell us more about why you've selected this option" %><br />
+   <%= text_area_tag(:flag_desc, :'Enter your information here', size: '50x5') %> 
+</div>
+<br>
+When you submit your report, it will be reviewed by an administrator. <br>
+If you're reporting your tutor, you will be unallocated from them and free to choose
+a new tutor. <br>
+<%= submit_tag "Submit Report" %>

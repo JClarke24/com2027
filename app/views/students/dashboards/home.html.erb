@@ -53,7 +53,7 @@ or if tutor hasn't been selected, allows student to find a tutor -->
 <div id="tutor">
 <h2>Your tutor progress </h2>
 <% if @tutor && @tutor_confirmed %>
-  <h5>Your tutor is <%= @tutor.forename%> &nbsp;<%= @tutor.surname%></h5>
+  <h5>Your tutor is <%= @forename%> &nbsp;<%= @surname%></h5>
 <!--rounding on client side so that rates can be sorted more accurately on server side-->
 <h5>Current rating: <%=@tutor.rating.round(1) %> &nbsp; (<%= @tutor.num_rates %> rates) </h5>
 <h3>Rate your tutor</h3>
@@ -67,7 +67,8 @@ or if tutor hasn't been selected, allows student to find a tutor -->
 <span id = "star5" class="fa fa-star unchecked"></span>
 <br>
    <%= submit_tag "Submit rating", :class => "btn", :id => "submit_rating" %>
-
+<br>
+<span class = "fa fa-flag" style = "color: red; font-size: 1em;"></span> &nbsp;Any problems with your tutor? Report them to the site administrators <a href = "/flag"> here. </a>
 <%elsif @tutor %>
 <p>Your tutor request has been sent to <%= @tutor.forename %></p>
 <% elsif @language != "Language"%>
@@ -82,12 +83,12 @@ next level!</p>
 <script>
   //change the text to 'update rating' if user has already rated tutor
   //also show their previous rating
-var rated = <%=@student.rated %>
+var rated = <%=@rated %>
 //console.log("rated? "+rated);
 if(rated){
 $('#submit_rating').val('Update rating');
-var currentRating = <%=@student.current_rating %>
-var name = '<%=@tutor.forename %>'
+var currentRating = <%=@current_rating %>
+var name = '<%=@forename %>'
 $('#currentRating').html('Your current rating for ' + name +': ' + currentRating);
 }
 var list = ['star1','star2','star3','star4','star5'];

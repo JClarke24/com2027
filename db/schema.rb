@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_02_102327) do
+ActiveRecord::Schema.define(version: 2020_06_02_151007) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -79,6 +79,15 @@ ActiveRecord::Schema.define(version: 2020_06_02_102327) do
     t.index ["scopeable_type", "scopeable_id"], name: "index_rating_ratings_on_scopeable_type_and_scopeable_id"
   end
 
+  create_table "reports", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "user_type"
+    t.boolean "reason"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "students", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -99,7 +108,7 @@ ActiveRecord::Schema.define(version: 2020_06_02_102327) do
     t.integer "tutor_id"
     t.boolean "tutor_confirmed", default: false
     t.boolean "rated"
-    t.integer "current_rating", default: 0
+    t.integer "current_rating"
     t.index ["email"], name: "index_students_on_email", unique: true
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
   end

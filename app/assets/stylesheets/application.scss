@@ -229,6 +229,13 @@
 .checked:hover{
   color:black;
 }
+#tutor a, .btn a{
+  color: $brown;
+}
+#flagForm select{
+  margin: 0;
+  width: auto;
+}
 //code for profile.html.erb
 .profile-white,.profile-hover-white:hover{
   color:#000!important;

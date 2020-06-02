@@ -37,6 +37,8 @@ Rails.application.routes.draw do
     post 'pickLanguage', to: 'students/dashboards#pickLanguage'
     post 'requestTutor', to: 'students/dashboards#requestTutor'
     get 'findTutor', to: 'students/dashboards#maps'
+    get 'flag', to: 'students/dashboards#flag'
+    post 'flag', to: 'students/dashboards#sendFlag'
     get 'quizzes', to: 'quizzes#index'
   end
 
