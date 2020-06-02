@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
 
-  devise_for :admins
+
   resources :submissions
   resources :quizzes, only: [:index, :new, :create, :destroy]
-
+  devise_for :admins
   devise_for :tutors, path: 'tutors', controllers: { registrations: "tutors/registrations", sessions: "tutors/sessions"}
   devise_for :students, path: 'students', controllers: { registrations: "students/registrations", sessions: "students/sessions"}
 
@@ -42,6 +42,9 @@ Rails.application.routes.draw do
     get 'quizzes', to: 'quizzes#index'
   end
 
+  authenticated :admin do
+    get 'home', to: 'home#admins', as: :admin_home
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   #Home page is the root

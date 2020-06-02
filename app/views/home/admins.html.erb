@@ -1,0 +1,24 @@
+<h2>Reports to review</h2>
+<table>
+  <thead>
+   <tr>
+   <th>User type</th>
+   <th>User ID</th>
+   <th>Flag reason</th>
+   <th>Flag description</th>
+   <th>Warn</th>
+   <th>Ban</th>
+   </tr>
+  </thead>
+  <tbody>
+    <% @reports = Report.where(action = false) %>
+   <% @reports.each do |report| %>
+     <tr>
+      <td><%= report.user_type %></td>
+      <td><%= report.user_id %></td>
+      <td><%= report.reason %></td>
+      <td><%= report.description %></td>
+     </tr>
+   <% end %>
+  </tbody>
+<h2>Tutor ratings</h2>
