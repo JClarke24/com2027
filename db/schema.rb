@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_01_140209) do
+ActiveRecord::Schema.define(version: 2020_06_02_102327) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -98,6 +98,8 @@ ActiveRecord::Schema.define(version: 2020_06_01_140209) do
     t.string "country", default: "Country"
     t.integer "tutor_id"
     t.boolean "tutor_confirmed", default: false
+    t.boolean "rated"
+    t.integer "current_rating", default: 0
     t.index ["email"], name: "index_students_on_email", unique: true
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
   end
@@ -136,7 +138,7 @@ ActiveRecord::Schema.define(version: 2020_06_01_140209) do
     t.string "description2", default: "What I offer?"
     t.integer "approval", default: 0, null: false
     t.decimal "rating"
-    t.integer "num_rates", default: 0
+    t.integer "num_rates"
     t.index ["email"], name: "index_tutors_on_email", unique: true
     t.index ["reset_password_token"], name: "index_tutors_on_reset_password_token", unique: true
   end

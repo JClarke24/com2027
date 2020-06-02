@@ -53,18 +53,21 @@ or if tutor hasn't been selected, allows student to find a tutor -->
 <div id="tutor">
 <h2>Your tutor progress </h2>
 <% if @tutor && @tutor_confirmed %>
-<%= @tutor.forename%> &nbsp;<%= @tutor.surname%>
-Current rating: <%=@tutor.rating %>
+  <h5>Your tutor is <%= @tutor.forename%> &nbsp;<%= @tutor.surname%></h5>
+<!--rounding on client side so that rates can be sorted more accurately on server side-->
+<h5>Current rating: <%=@tutor.rating.round(1) %> &nbsp; (<%= @tutor.num_rates %> rates) </h5>
 <h3>Rate your tutor</h3>
-<%= form_tag('rateTutor')  %>
-<%= hidden_field_tag 'tutor_rating' %>
+<h5 id = "currentRating">&nbsp;</h5>
+  <%= form_tag('rateTutor')  %>
+  <%= hidden_field_tag 'tutor_rating' %>
 <span id = "star1" class="fa fa-star unchecked"></span>
 <span id = "star2" class="fa fa-star unchecked"></span>
 <span id = "star3" class="fa fa-star unchecked"></span>
 <span id = "star4" class="fa fa-star unchecked"></span>
 <span id = "star5" class="fa fa-star unchecked"></span>
 <br>
-<%= submit_tag "Submit rating" %>
+   <%= submit_tag "Submit rating", :class => "btn", :id => "submit_rating" %>
+
 <%elsif @tutor %>
 <p>Your tutor request has been sent to <%= @tutor.forename %></p>
 <% elsif @language != "Language"%>
@@ -77,6 +80,16 @@ next level!</p>
 
 </div>
 <script>
+  //change the text to 'update rating' if user has already rated tutor
+  //also show their previous rating
+var rated = <%=@student.rated %>
+//console.log("rated? "+rated);
+if(rated){
+$('#submit_rating').val('Update rating');
+var currentRating = <%=@student.current_rating %>
+var name = '<%=@tutor.forename %>'
+$('#currentRating').html('Your current rating for ' + name +': ' + currentRating);
+}
 var list = ['star1','star2','star3','star4','star5'];
 list.forEach(function(element) {
 document.getElementById(element).addEventListener("click", function(){
@@ -100,7 +113,7 @@ position = list.indexOf(element);
   console.log(position);
   for(i = 4; i > position; i--){
     document.getElementById(list[i]).classList.replace("checked", "unchecked");
-    $('#tutor_rating').val(position);
+    $('#tutor_rating').val(position+1);
 }
 }
   });
