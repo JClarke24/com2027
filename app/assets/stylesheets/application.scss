@@ -28,6 +28,41 @@
          text-align: center;
          color: $yellow;
      }
+    // style for the terms and privacy box
+.modal {
+ display: none;
+ position: fixed;
+ z-index: 1;
+ left: 0;
+ top: 0;
+ width: 100%;
+ height: 100%;
+ overflow: auto;
+}
+
+
+.modal-content {
+ background-color: $lightyellow;
+ margin: 15% auto;
+ padding: 1em;
+ border: 1px solid $brown;
+ width: 60%;
+ color: $brown;
+}
+
+.close {
+ color: $brown;
+ float: right;
+ font-size: 28px;
+ font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+ color: $orange;
+ text-decoration: none;
+ cursor: pointer;
+}
 
      #map{
          height: 50vh;
