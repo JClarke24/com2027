@@ -296,6 +296,14 @@
 #mc {
 	display: inline;
 }
+#error {
+  font-size: 1.2em;
+  color: black;
+background-color: red;
+font-weight: bold;
+padding: 0.5em;
+border-radius: 20px;
+}
 //code for profile.html.erb
 .profile-white,.profile-hover-white:hover{
   color:#000!important;

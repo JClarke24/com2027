@@ -32,7 +32,24 @@ class HomeController < ApplicationController
       user.save!
   end
  end
+ redirect_to admin_home_url
 end
   def banUser
+    #mark the report as actioned so it doesn't show up again in the list
+    report = Report.find(params[:report])
+    report.action = true
+    report.save!
+    #warn the user - set a flag on their account
+    if(report.user_type =='tutor') then
+    user = Tutor.find(report.user_id)
+      user.banned = true
+      user.flag_reason = report.reason
+      user.save!
+  else
+    user = Student.find(report.user_id)
+      user.banned = true
+      user.save!
   end
+  redirect_to admin_home_url
+end
 end

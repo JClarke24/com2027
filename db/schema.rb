@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_03_112413) do
+ActiveRecord::Schema.define(version: 2020_06_03_124948) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 2020_06_03_112413) do
     t.string "user_type"
     t.string "reason"
     t.text "description"
-    t.boolean "action"
+    t.boolean "action", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -108,8 +108,8 @@ ActiveRecord::Schema.define(version: 2020_06_03_112413) do
     t.string "country", default: "Country"
     t.integer "tutor_id"
     t.boolean "tutor_confirmed", default: false
-    t.boolean "rated"
-    t.integer "current_rating"
+    t.boolean "rated", default: false
+    t.integer "current_rating", default: 0
     t.index ["email"], name: "index_students_on_email", unique: true
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
   end
@@ -147,8 +147,8 @@ ActiveRecord::Schema.define(version: 2020_06_03_112413) do
     t.text "description", default: "About me"
     t.string "description2", default: "What I offer?"
     t.integer "approval", default: 0, null: false
-    t.decimal "rating"
-    t.integer "num_rates"
+    t.decimal "rating", default: "0.0"
+    t.integer "num_rates", default: 0
     t.boolean "banned"
     t.boolean "warned"
     t.string "flag_reason"

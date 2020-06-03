@@ -5,6 +5,7 @@ class Students::DashboardsController < ApplicationController
     if current_student
       @language = current_student.language
       @tutor = Tutor.find(current_student.tutor_id)
+      @tutor_rating = @tutor.rating
       @student = current_student
       @forename = @tutor.forename
       @surname = @tutor.surname
@@ -42,9 +43,13 @@ class Students::DashboardsController < ApplicationController
     tutor = Tutor.find(current_student.tutor_id)
     rating = params[:tutor_rating].to_i
     current_rating_tutor = tutor.rating.to_f
+    old_rating = current_student.current_rating
     num_rates = tutor.num_rates.to_i
     if current_student.rated?
-      new_rating = (current_rating_tutor + rating - current_student.current_rating)/(num_rates)
+      new_rating = (current_rating_tutor * num_rates)
+      new_rating =  new_rating - old_rating
+      new_rating =  new_rating + rating
+      new_rating =  new_rating/(num_rates)
       tutor.rating = new_rating
       tutor.num_rates = num_rates
       current_student.current_rating = rating
