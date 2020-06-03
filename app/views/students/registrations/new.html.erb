@@ -23,7 +23,7 @@
   </div>
 
   <div class="field">
-    <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+    <p>By creating an account you agree to our <a href="#" style="color:dodgerblue" id = "terms">Terms & Privacy</a>.</p>
     <p> You confirm that you are over 16 and you agree that your data will be stored according to the GDPR regulations</p>
   </div>
 
@@ -35,3 +35,45 @@
 <% end %>
 
 <%= render "students/shared/links" %>
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3>Terms and Privacy</h3>
+    <p>By signing up to this site, you confirm you are <strong>over 16</strong>.</p>
+    <h4>For tutors</h4>
+    <p>We will share your location on a map view with all prospective students in the language you are teaching.
+    You can manually choose your location; we recommend not using your home address, but instead somewhere in your
+    local area or neighbourhood.</p>
+    <p>By signing up you confirm that the information you have provided about yourself is accurate and honest.
+    You confirm that you will not offer to meet students in private locations such as your or their home.</p>
+    <p>Failure to comply with these terms will result in a warning or a permanent ban.</p>
+    <h4>For students</h4>
+    <p>All of our meetings take place offline with a tutor, in your local area. By signing up you confirm that you
+    will not offer to meet your tutor in private locations such as your or their home.</p>
+    <p>If you feel unsafe or uncomfortable with your tutor, at any time, you can report them to the site administrators. This
+    will result in a warning or ban for the tutor and you will find a new tutor. By signing up, you confirm that
+  you will not misuse this feature and falsely report tutors. </p>
+  </div>
+
+</div>
+<script type="text/javascript">
+  var modal = document.getElementById("modal");
+
+var link = document.getElementById("terms");
+
+var span = document.getElementsByClassName("close")[0];
+
+link.onclick = function() {
+  modal.style.display = "block";
+}
+
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
