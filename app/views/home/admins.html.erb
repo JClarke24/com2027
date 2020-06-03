@@ -12,7 +12,7 @@
      </tr>
     </thead>
     <tbody>
-      <% @reports = Report.where(action = false) %>
+      <% @reports = Report.where("action == 0") %>
      <% @reports.each do |report| %>
        <tr>
         <td><%= report.user_type %></td>
