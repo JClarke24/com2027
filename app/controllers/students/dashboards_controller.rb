@@ -86,6 +86,9 @@ class Students::DashboardsController < ApplicationController
     #deallocate student from their tutor
     current_student.tutor_id = nil
     current_student.tutor_confirmed = false
+    #wipe the ratings, so it doesn't look like they've already rated a new tutor
+    current_student.rated = false
+    current_student.current_rating = 0
     current_student.save!
     @student = current_student
     redirect_to authenticated_student_root_url, notice: "Thank you for your report. You have been deregistered from your tutor and the admins will investigate them."
