@@ -46,6 +46,8 @@ Rails.application.routes.draw do
     get 'home', to: 'home#admins', as: :admin_home
     post "warnUser", to: 'home#warnUser'
     post "banUser", to: 'home#banUser'
+    get 'ratings', to: 'home#ratings'
+    get 'reports', to: 'home#reports'
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
