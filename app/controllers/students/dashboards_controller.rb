@@ -67,7 +67,7 @@ class Students::DashboardsController < ApplicationController
 
   def sendFlag
     #the student is reporting their tutor; save the tutor's id and their tutor status
-    user_id = Tutor.find(current_student.tutor_id)
+    user_id = current_student.tutor_id
     user_type = 'tutor'
     reason = params[:flag_reason]
     description = params[:flag_desc]

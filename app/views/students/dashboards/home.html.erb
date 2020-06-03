@@ -68,7 +68,7 @@ or if tutor hasn't been selected, allows student to find a tutor -->
 <br>
    <%= submit_tag "Submit rating", :class => "btn", :id => "submit_rating" %>
 <br>
-<span class = "fa fa-flag" style = "color: red; font-size: 1em;"></span> &nbsp;Any problems with your tutor? Report them to the site administrators <a href = "/flag"> here. </a>
+<span class = "fa fa-flag" style = "color: red; font-size: 1em;"></span> &nbsp;Any problems with your tutor? Report them to the site administrators<a href = "/flag"> here. </a>
 <%elsif @tutor %>
 <p>Your tutor request has been sent to <%= @tutor.forename %></p>
 <% elsif @language != "Language"%>
@@ -83,11 +83,11 @@ next level!</p>
 <script>
   //change the text to 'update rating' if user has already rated tutor
   //also show their previous rating
-var rated = <%=@rated %>
+var rated = <%=@rated %>;
 //console.log("rated? "+rated);
 if(rated){
 $('#submit_rating').val('Update rating');
-var currentRating = <%=@current_rating %>
+var currentRating = <%=@current_rating %>;
 var name = '<%=@forename %>'
 $('#currentRating').html('Your current rating for ' + name +': ' + currentRating);
 }

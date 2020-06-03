@@ -236,6 +236,17 @@
   margin: 0;
   width: auto;
 }
+#reports{
+  height: 25vh;
+  overflow: scroll;
+  table{
+    width: 80%;
+    margin-left: 10%;
+  }
+  td{
+    margin: 1em;
+  }
+}
 //code for tutor quizzes
 #quiz {
 	margin-left: 1em;

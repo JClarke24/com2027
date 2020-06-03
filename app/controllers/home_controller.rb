@@ -3,4 +3,11 @@ class HomeController < ApplicationController
   end
   def admins
   end
+  def warnUser
+    report = params[:report]
+    report.action = true
+    report.save!
+  end
+  def banUser
+  end
 end

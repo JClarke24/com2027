@@ -44,6 +44,8 @@ Rails.application.routes.draw do
 
   authenticated :admin do
     get 'home', to: 'home#admins', as: :admin_home
+    post "warnUser", to: 'home#warnUser'
+    post "banUser", to: 'home#banUser'
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 

@@ -5,7 +5,7 @@ class CreateReports < ActiveRecord::Migration[5.2]
       t.string :user_type
       t.string :reason
       t.text :description
-      t.boolean :reason
+      t.boolean :action
 
       t.timestamps
     end
