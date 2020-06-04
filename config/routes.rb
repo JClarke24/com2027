@@ -29,6 +29,8 @@ Rails.application.routes.draw do
     post 'requestTutor', to: 'students/dashboards#requestTutor'
     get 'findTutor', to: 'students/dashboards#maps'
     get 'student_schedule', to: 'students/dashboards#student_schedule'
+
+
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -36,7 +36,9 @@
     </script>
   </head>
   <body>
+    <%= link_to "Google+", '/auth/google/callback' %>
     <%= link_to "Sign in with Google", student_google_oauth2_omniauth_authorize_path %>
+
     <p>View your Tutor's availabilities</p>
     <div id='calendar'></div>
 
