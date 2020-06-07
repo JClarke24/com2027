@@ -5,6 +5,8 @@ class RoomMsgsController < ApplicationController
     @room_msg = RoomMsg.create student: current_student,
                                 room: @room,
                                 message: params.dig(:room_msg, :message)
+
+    RoomChannel.broadcast_to @room, @room_msg
   end
 
   protected

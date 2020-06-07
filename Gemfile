@@ -72,3 +72,4 @@ gem 'modernizr-rails'
 #for rating
 gem 'font-awesome-rails'
 gem 'simple_form'
+gem 'redis'
