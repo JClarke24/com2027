@@ -9,6 +9,9 @@
 
   <div class="col">
     <div class="chat">
+      <!-- maybe include student name in the message?
+      to do that, add <%#= Student.find(room_msg.student_id).forename %>
+    -xenia -->
       <% @room_msgs.each do |room_msg| %>
         <div class="chat-message-container">
           <div class="row no-gutters">

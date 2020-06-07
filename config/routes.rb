@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 
   resources :room_msgs
   resources :rooms
-  root controller: :rooms, action: :index
   resources :submissions
   resources :quizzes, only: [:index, :new, :create, :destroy]
   devise_for :admins
