@@ -1,0 +1,10 @@
+# This file should be listed in .gitignore to keep settings secret
+# This file overrides ENV variables in the Unix shell
+
+# To add, use the following format:
+# GMAIL_USERNAME: 'Your_Gmail_Username'
+# This allows the value saved at this key to be used by calling
+# ENV["GMAIL_USERNAME"] anywhere in the rails application
+
+# GOOGLE_CLIENT_ID: '1031056337305-3m51ueucr39hrllm5n3m0g7u7o49mvc4.apps.googleusercontent.com'
+# GOOGLE_CLIENT_SECRET: 'OTTT_ZSsn7-Jii3vjlOu7npP'

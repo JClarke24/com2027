@@ -19,7 +19,7 @@ class Students::OmniauthCallbacksController < Devise::OmniauthCallbacksControlle
       @student.refresh_token = auth.credentials.refresh_token
       @student.save!
       sign_in(@student)
-      redirect_to tasks_path
+      redirect_to meetings_path
     else
       session["devise.google_data"] = request.env["omniauth.auth"]
       redirect_to new_user_registration_url

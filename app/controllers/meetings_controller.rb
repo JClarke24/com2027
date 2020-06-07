@@ -45,8 +45,8 @@ class MeetingsController < ApplicationController
       "web" => {
           "access_token" => current_student.access_token,
           "refresh_token" => current_student.refresh_token,
-          "client_id" => ENV["GOOGLE_API_KEY"],
-          "client_secret" => ENV["GOOGLE_API_SECRET"]
+          "client_id" => ENV["GOOGLE_CLIENT_ID"],
+          "client_secret" => ENV["GOOGLE_CLIENT_SECRET"]
       }
     })
     begin

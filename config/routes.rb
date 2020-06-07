@@ -16,7 +16,6 @@ Rails.application.routes.draw do
     post 'acceptStudent', to: 'tutors/dashboards#acceptStudent'
     post 'rejectStudent', to: 'tutors/dashboards#rejectStudent'
     post 'messages', to: 'tutors/dashboards#messages'
-
     get 'schedule', to: 'tutors/dashboards#schedule'
 
   end
@@ -30,10 +29,13 @@ Rails.application.routes.draw do
     get 'findTutor', to: 'students/dashboards#maps'
     get 'student_schedule', to: 'students/dashboards#student_schedule'
 
-
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  #get 'auth/Google/callback', to: 'sessions#googleAuth'
+  #get 'auth/failure', to: redirect('/')
+
 
   #Home page is the root
   root 'home#home'
