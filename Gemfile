@@ -72,6 +72,9 @@ gem 'modernizr-rails'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap4-datetime-picker-rails'
 
-#Google Oauth
+# Google Oauth
 gem 'omniauth-google-oauth2'
 gem 'google-api-client', require: 'google/apis/calendar_v3'
+
+# Environment Variables
+gem 'figaro' 

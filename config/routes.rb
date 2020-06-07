@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   resources :meetings
   devise_for :tutors, path: 'tutors', controllers: { registrations: "tutors/registrations", sessions: "tutors/sessions"}
-  devise_for :students, path: 'students', controllers: { registrations: "students/registrations", sessions: "students/sessions", :omniauth_callbacks => 'callbacks'}
+  devise_for :students, path: 'students', controllers: { registrations: "students/registrations", sessions: "students/sessions", :omniauth_callbacks => 'students/omniauth_callbacks'}
 
   authenticated :tutor do
     root 'tutors/dashboards#home', as: :authenticated_tutor_root
