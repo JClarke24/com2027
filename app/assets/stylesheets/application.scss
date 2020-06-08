@@ -364,7 +364,7 @@ ul{
 
 }
 .room-nav-link {
-  border: 1px solid lighten($brown, 40%);
+  border: 3px solid lighten($brown, 40%);
   background: lighten($brown, 45%);
 
   & + .room-nav-link {
@@ -373,17 +373,13 @@ ul{
 }
 
 .chat {
-  border: 1px solid lighten($white, 40%);
+  border: 3px solid lighten($white, 40%);
   background: lighten($white, 50%);
   height: 50vh;
   border-radius: 5px 5px 0 0;
   overflow-y: auto;
   .chat-message-container {
     padding: 5px;
-
-    .avatar {
-      margin: 5px;
-    }
 
     .message-content {
       padding: 5px;
@@ -400,7 +396,7 @@ ul{
 }
 
 .chat-input {
-  border-top: 0 none;
+  border: 1px solid $brown;
   border-radius: 0 0 5px 5px;
 }
 
