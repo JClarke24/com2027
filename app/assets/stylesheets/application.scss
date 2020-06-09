@@ -367,9 +367,6 @@ ul{
   border: 3px solid lighten($brown, 40%);
   background: lighten($brown, 45%);
 
-  & + .room-nav-link {
-    border-top: 0 none;
-  }
 }
 
 .chat {
@@ -394,6 +391,7 @@ ul{
 
 .chat-input {
   border: 1px solid $brown;
+  color: #000000;
   border-radius: 0 0 5px 5px;
 }
 
