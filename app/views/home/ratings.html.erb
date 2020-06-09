@@ -1,0 +1,26 @@
+<h2>Tutors by rating: worst to best</h2>
+
+<div id="view_rates">
+  <table>
+    <thead>
+     <tr>
+     <th>Tutor ID</th>
+     <th>Tutor name</th>
+     <th>Tutor rating</th>
+     <th>Number of rates</th>
+
+     </tr>
+    </thead>
+    <tbody>
+      <% @tutors = Tutor.where("num_rates > 0").order(:rating) %>
+     <% @tutors.each do |tutor| %>
+       <tr>
+        <td><%= tutor.id %></td>
+        <td><%= tutor.forename%> &nbsp; <%= tutor.surname %></td>
+        <td><%= tutor.rating%></td>
+        <td><%= tutor.num_rates%></td>
+
+       </tr>
+     <% end %>
+    </tbody>
+</div>
