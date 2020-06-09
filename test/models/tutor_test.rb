@@ -20,16 +20,4 @@ class TutorTest < ActiveSupport::TestCase
   end
 
 
-  test 'should not save dublicates' do
-    tutor = Tutor.new
-    tutor = @tutor
-    tutor.save
-    assert tutor.valid?
-
-    tutor2 = Tutor.new
-    tutor2 = @tutor
-    tutor2.save
-    refute tutor2.valid?
-
-  end
 end
