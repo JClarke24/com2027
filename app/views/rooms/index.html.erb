@@ -1,13 +1,6 @@
 <!-- stops the InvalidAuthenticityToken error -->
 <%= csrf_meta_tags %>
-<div class="row">
-  <div class="col-12 col-md-3">
-    <div class="mb-3">
-      <%= render partial: 'rooms' %>
-    </div>
-
-
-  <div class="col">
+  <div class="col" align="center">
     <div class="alert alert-primary">
       <h4 class="alert-heading">
         Welcome to the Chat room!
@@ -22,5 +15,6 @@
       <p>
         You can create or join a room.
       </p>
+       <%= render partial: 'rooms' %>
     </div>
 </div>
