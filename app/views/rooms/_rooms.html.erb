@@ -4,6 +4,12 @@
   <% end %>
 </div>
 
+<div class="mb-3">
+  <%= link_to edit_room_path, class: 'btn btn-primary' do %>
+    Edit a room
+  <% end %>
+</div>
+
 <% if @rooms.present? %>
   <nav class="nav flex-column">
     <% @rooms.each do |room| %>
