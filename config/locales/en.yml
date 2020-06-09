@@ -107,6 +107,8 @@ en:
         requests: Your student requests
         confirmed: Your confirmed students
         location: Set a location so you can start tutorings
+        request_submissions: View your students improvements grapgh requests
+        button_request: View requests
 
     quizzes:
       english:
