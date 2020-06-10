@@ -1,26 +1,26 @@
-<h1>Welcome to your student dashboard!</h1>
+<h1><%= t('.welcome') %></h1>
 
 <!-- shows language progress
 or if a language hasn't been selected, lets student choose language -->
 <div id="language">
-  <h2>Your language progress</h2>
+  <h2><%= t('.progress') %></h2>
   <% if @language != "Language"%>
-  <h1> You're learning <%=@language %> </h1>
+  <h1> <%= t('.language') %><%=@language %> </h1>
   <% else %>
-  <p>You haven't chosen a language yet.</p>
+  <p><%= t('.choice') %></p>
   <div id="langSelect">
     <div class = "container">
     <div class="col-sm-3">
-      French <br>
+    <%= t('.french') %> <br>
       <%=image_tag("french.png")%><br>
 
     </div>
     <div class="col-sm-3">
-      Spanish <br>
+      <%= t('.spanish') %> <br>
       <%=image_tag("spanish.png")%><br>
     </div>
     <div class="col-sm-3">
-      English <br>
+    <%= t('.english') %> <br>
       <%=image_tag("english.png")%><br>
     </div>
     <div class="col-sm-3">
@@ -124,13 +124,13 @@ position = list.indexOf(element);
 </div>
 
 <div>
-  <h2> Test yourself on tutor created quizzes </h2>
+  <h2>  <%= t('.quizzes') %></h2>
   <button class = "btn"><a href="quizzes">View Quizzes</a></button>
 
 </div>
 
 <div>
-  <h2> View your quiz submissions </h2>
+  <h2>  <%= t('.submissions') %> </h2>
   <button class = "btn"><a href="submissions">View Submissions</a></button>
 
 </div>

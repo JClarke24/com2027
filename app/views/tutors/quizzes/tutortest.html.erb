@@ -16,35 +16,35 @@
 }
 </style>
 
-<h1>Do you want to become part of BeeSmart as a tutor</h1>
-<h2>You need to solve any of the tests before you can start using Beesmart</h2
-<h2>Current status: <%= current_tutor.approval %></h2>
+<h1><%= t('.description') %> </h1>
+<h2><%= t('.description2') %> </h2>
+<h2><%= t('.status') %>: <%= current_tutor.approval %></h2>
 
     <div class="card"><br/>
       <%= image_tag("spanish.png", size: "200x160") %>
       <div class="container">
-        <h4><b>Spanish</b></h4>
+        <h4><b><%= t('.spanish') %> </b></h4>
         <button class = "btn"><%= link_to "Spanish Test", tutor_spanish_test_path %></button>
       </div>
     </div>
     <div class="card"><br/>
       <%= image_tag("germany.jpg", size: "200x160") %>
       <div class="container">
-        <h4><b>German</b></h4>
+        <h4><b><%= t('.german') %> </b></h4>
         <button class = "btn"><%= link_to "German Test", tutor_german_test_path %></button>
       </div>
     </div>
     <div class="card"><br/>
       <%= image_tag("french.png", size: "200x160") %>
       <div class="container">
-        <h4><b>French</b></h4>
+        <h4><b><%= t('.french') %> </b></h4>
         <button class = "btn"><%= link_to "French Test", tutor_french_test_path %></button>
       </div>
     </div>
     <div class="card"><br/>
       <%= image_tag("english.png", size: "200x160") %>
       <div class="container">
-        <h4><b>English</b></h4>
+        <h4><b><%= t('.english') %> </b></h4>
         <button class = "btn"><%= link_to "English Test", tutor_english_test_path %></button>
       </div>
     </div>
