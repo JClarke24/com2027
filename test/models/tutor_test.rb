@@ -18,4 +18,6 @@ class TutorTest < ActiveSupport::TestCase
     tutor.save
     assert tutor.valid?
   end
+
+
 end

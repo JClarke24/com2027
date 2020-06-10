@@ -1,4 +1,4 @@
-<h1>The Quiz Hive</h1>
+<h1><%= t('.title') %></h1>
 
 <% if !flash[:notice].blank? %>
    <div class = "alert alert-info">
@@ -17,11 +17,11 @@
 <table class = "table table-bordered table-striped" >
    <thead>.
       <tr>
-         <th>Tutor</th>
-         <th>Language</th>
-         <th>Level</th>
-         <th>Topic</th>
-         <th>Download Link</th>
+         <th><%= t('.tutor') %></th>
+         <th><%= t('.language') %></th>
+         <th><%= t('.level') %></th>
+         <th><%= t('.topic') %></th>
+         <th><%= t('.download') %></th>
          <th> </th>
       </tr>
    </thead>

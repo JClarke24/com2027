@@ -42,11 +42,11 @@
 
 </script>
 
-<h2>If you pass the test you will be able to proceed</h2>
-<h2>Status: <%= current_tutor.approval %></h2>
+<h2><%= t('.description') %> </h2>
+<h2><%= t('.status') %> : <%= current_tutor.approval %></h2>
 
 <div class="field">
-<h1>English test</h1>
+<h1><%= t('.test') %> </h1>
 <form id = "quiz" name = "quiz">
 
 
