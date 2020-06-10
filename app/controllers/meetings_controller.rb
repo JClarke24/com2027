@@ -9,14 +9,14 @@ class MeetingsController < ApplicationController
   # GET /meetings
   # GET /meetings.json
   def index
-    # @meetings = Meeting.all
     if current_tutor
       @meetings = current_tutor.meetings
     elsif current_student
       @meetings = Tutor.find(current_student.tutor_id).meetings
-      #@tutor = Tutor.find(current_student.tutor_id)
     end
   end
+
+
 
   # GET /meetings/1
   # GET /meetings/1.json
@@ -29,12 +29,12 @@ class MeetingsController < ApplicationController
       flash[:notice] = 'Meeting was successfully added.'
       redirect_to meetings_path
     elsif current_tutor
-      client = get_google_calendar_client current_tutor
-      meeting = params[:meeting]
-      event = get_event meeting
-      client.insert_event('primary', event)
-      flash[:notice] = 'Meeting was successfully added.'
-      redirect_to meetings_path
+      #client = get_google_calendar_client current_tutor
+      #meeting = params[:meeting]
+      #event = get_event meeting
+      #client.insert_event('primary', event)
+      #flash[:notice] = 'Meeting was successfully added.'
+      # redirect_to meetings_path
     end
   end
 
@@ -79,6 +79,7 @@ class MeetingsController < ApplicationController
 
   # GET /meetings/1/edit
   def edit
+
   end
 
 
@@ -132,14 +133,16 @@ class MeetingsController < ApplicationController
     def get_event meeting
       # attendees
       event = Google::Apis::CalendarV3::Event.new({
-        summary: meeting[:title],
+        summary: 'meeting[:title]',
         location: 'To be implemented',
-        description: meeting[:description],
+        description: 'meeting[:description]',
         start: {
-          date_time: Time.new(meeting['startDateTime(1i)'],meeting['startDateTime(2i)'],meeting['startDateTime(3i)'],meeting['startDateTime(4i)'],meeting['startDateTime(5i)']).to_datetime.rfc3339
+          date_time: "2020-06-28T09:00:00-07:00"
+          # date_time: Time.new(meeting['startDateTime(1i)'],meeting['startDateTime(2i)'],meeting['startDateTime(3i)'],meeting['startDateTime(4i)'],meeting['startDateTime(5i)']).to_datetime.rfc3339
         },
         end: {
-          date_time: Time.new(meeting['endDateTime(1i)'],meeting['endDateTime(2i)'],meeting['endDateTime(3i)'],meeting['endDateTime(4i)'],meeting['endDateTime(5i)']).to_datetime.rfc3339
+          date_time: "2020-06-28T09:00:00-10:00"
+          #date_time: Time.new(meeting['endDateTime(1i)'],meeting['endDateTime(2i)'],meeting['endDateTime(3i)'],meeting['endDateTime(4i)'],meeting['endDateTime(5i)']).to_datetime.rfc3339
         },
         # attendees,
         reminders: {
@@ -156,8 +159,7 @@ class MeetingsController < ApplicationController
               {type: 'event_cancellation', method: 'email'},
               {type: 'event_response', method: 'email'}
           ]
-        },
-        'primary': true
+        }, 'primary': true
         })
       end
 

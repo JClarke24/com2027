@@ -3,5 +3,5 @@ json.array! (@meetings) do |meeting|
   json.extract! meeting, :id, :title, :description
   json.start meeting.startDateTime
   json.end meeting.endDateTime
-  json.url meetings_url(meeting, format: :html)
+  json.url meeting_url(meeting, format: :html)
 end
