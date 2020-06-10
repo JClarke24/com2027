@@ -234,6 +234,15 @@
        to {opacity:1;}
      }
 
+     .meetingForm {
+       padding: 5px;
+       width: 700px;
+       margin: auto;
+       display:grid;
+       color:$brown;
+     }
+
+
      header{
        th{
          color: $brown;

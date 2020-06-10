@@ -16,11 +16,7 @@ class MeetingsController < ApplicationController
     end
   end
 
-
-
-  # GET /meetings/1
-  # GET /meetings/1.json
-  def show
+  def add_to_calendar
     if current_student
       client = get_google_calendar_client current_student
       meeting = params[:meeting]
@@ -28,15 +24,13 @@ class MeetingsController < ApplicationController
       client.insert_event('primary', event)
       flash[:notice] = 'Meeting was successfully added.'
       redirect_to meetings_path
-    elsif current_tutor
-      #client = get_google_calendar_client current_tutor
-      #meeting = params[:meeting]
-      #event = get_event meeting
-      #client.insert_event('primary', event)
-      #flash[:notice] = 'Meeting was successfully added.'
-      # redirect_to meetings_path
     end
   end
+  # GET /meetings/1
+  # GET /meetings/1.json
+  def show
+  end
+
 
   def get_google_calendar_client current_student
     client = Google::Apis::CalendarV3::CalendarService.new

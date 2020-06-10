@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     post 'rejectStudent', to: 'tutors/dashboards#rejectStudent'
     post 'messages', to: 'tutors/dashboards#messages'
     get 'schedule', to: 'tutors/dashboards#schedule'
+    get 'work_in_progress', to: 'tutors/dashboards#work_in_progress'
 
   end
 
@@ -28,6 +29,7 @@ Rails.application.routes.draw do
     post 'requestTutor', to: 'students/dashboards#requestTutor'
     get 'findTutor', to: 'students/dashboards#maps'
     get 'student_schedule', to: 'students/dashboards#student_schedule'
+    get 'work_in_progress', to: 'students/dashboards#work_in_progress'
 
   end
 
