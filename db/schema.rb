@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_10_064456) do
+
+ActiveRecord::Schema.define(version: 2020_05_26_164544) do
+
+  create_table "meetings", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "description"
+    t.integer "tutor_id"
+    t.integer "student_id"
+    t.string "location"
+    t.datetime "startDateTime", null: false
+    t.datetime "endDateTime", null: false
+    t.boolean "student_accepted"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+
+ActiveRecord::Schema.define(version: 2020_06_09_215454) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -115,6 +133,7 @@ ActiveRecord::Schema.define(version: 2020_06_10_064456) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_rooms_on_name", unique: true
+
   end
 
   create_table "students", force: :cascade do |t|
@@ -136,12 +155,14 @@ ActiveRecord::Schema.define(version: 2020_06_10_064456) do
     t.string "country", default: "Country"
     t.integer "tutor_id"
     t.boolean "tutor_confirmed", default: false
+
     t.string "name"
     t.string "access_token"
     t.datetime "expires_at"
     t.string "refresh_token"
     t.boolean "rated", default: false
     t.integer "current_rating", default: 0
+
     t.index ["email"], name: "index_students_on_email", unique: true
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
   end

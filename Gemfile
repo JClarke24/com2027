@@ -79,7 +79,7 @@ gem 'omniauth-google-oauth2'
 gem 'google-api-client', require: 'google/apis/calendar_v3'
 
 # Environment Variables
-gem 'figaro' 
+gem 'figaro'
 
 #for rating
 gem 'font-awesome-rails'
@@ -88,4 +88,3 @@ gem 'redis'
 
 #for contact form
 gem 'mail_form'
-
