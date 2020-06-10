@@ -1,7 +1,0 @@
-# This file should be listed in .gitignore to keep settings secret
-# This file overrides ENV variables in the Unix shell
-
-# To add, use the following format:
-# GMAIL_USERNAME: 'Your_Gmail_Username'
-# This allows the value saved at this key to be used by calling
-# ENV["GMAIL_USERNAME"] anywhere in the rails application

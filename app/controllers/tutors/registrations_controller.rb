@@ -4,7 +4,6 @@ class Tutors::RegistrationsController < Devise::RegistrationsController
   include Accessible_tutor
   skip_before_action :check_tutor, except: [:new, :create]
   # before_action :configure_sign_up_params, only: [:create]
-  skip_before_action :verify_authenticity_token, :only => :create
   before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
