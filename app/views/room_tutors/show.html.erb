@@ -8,7 +8,7 @@
   </div>
 
   <div class="col">
-    <div class="chat" data-channel-subscribe="roomtutor" data-room-id="<%= @room_tutor.id %>">
+    <div class="chat" data-channel-subscribe="roomtutor" data-roomtutor-id="<%= @room_tutor.id %>">
       <% @room_tutor_msgs.each do |room_tutor_msg| %>
         <div class="chat-message-container">
           <div class="row no-gutters">
@@ -50,7 +50,7 @@
     </div>
   </div>
 
-  <%= form.input :room_tutor_id, as: :hidden %>
+  <%= form.input :room_tutor, as: :hidden, :input_html => { :value => @room_tutor.id } %>
 <% end %>
 
 

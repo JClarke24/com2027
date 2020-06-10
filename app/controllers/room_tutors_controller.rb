@@ -34,8 +34,10 @@ class RoomTutorsController < ApplicationController
   end
 
   def show
-    @room_tutor_msg= RoomTutorMsg.new room_tutor: @room_tutor
-    @room_tutor_msgs = @room_tutor.room_tutor_msgs.includes(:tutor)
+    @room_tutor_msg= RoomTutorMsg.new roomtutor_id: @room_tutor.id
+    #@room_tutor_msgs = @room_tutor.room_tutor_msgs.includes(:tutor)
+    roomtutor_id = @room_tutor.id
+    @room_tutor_msgs = RoomTutorMsg.where("roomtutor_id = roomtutor_id")
   end
 
 
@@ -47,7 +49,7 @@ class RoomTutorsController < ApplicationController
   end
 
   def permitted_parameters
-    params.require(:room_tutor).permit(:name)
+    params.require(:room_tutor).permit(:name, :id)
   end
 
 end

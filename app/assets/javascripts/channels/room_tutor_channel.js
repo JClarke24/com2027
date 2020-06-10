@@ -1,7 +1,7 @@
 $(function() {
   $('[data-channel-subscribe="roomtutor"]').each(function(index, element) {
     var $element = $(element),
-        room_tutor_id = $element.data('room-tutor-id')
+        roomtutor_id = $element.data('room-tutor-id')
         messageTemplate = $('[data-role="message-template"]');
 
     $element.animate({ scrollTop: $element.prop("scrollHeight")}, 1000)
@@ -9,7 +9,7 @@ $(function() {
     App.cable.subscriptions.create(
       {
         channel: "RoomTutorChannel",
-        room: room_tutor_id
+        room: str(roomtutor_id)
       },
       {
         received: function(data) {
