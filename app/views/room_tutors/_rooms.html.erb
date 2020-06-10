@@ -7,7 +7,7 @@
 <% if @room_tutors.present? %>
   <nav class="nav flex-column">
     <% @room_tutors.each do |room_tutor| %>
-      <%= link_to room_tutor.name, room_tutor_path(room_tutor), class: 'nav-link room-tutor-nav-link' %>
+      <%= link_to room_tutor.name, room_tutor_path(room_tutor), class: 'nav-link room-nav-link' %>
     <% end %>
   </nav>
 <% else %>
