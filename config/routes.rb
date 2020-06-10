@@ -2,7 +2,14 @@ Rails.application.routes.draw do
 
 
 
+
+  resources :room_tutor_msgs
+  resources :room_tutors
+  resources :room_msgs
+  resources :rooms
+
   resources :improvements
+
   resources :submissions
   resources :quizzes, only: [:index, :new, :create, :destroy]
   devise_for :admins
