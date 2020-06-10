@@ -1,0 +1,63 @@
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+
+    <link href='calendar_main.css' rel='stylesheet' />
+    <link href='calendar_daygrid.css' rel='stylesheet' />
+    <link href='calendar_timegrid.css' rel='stylesheet' />
+
+
+    <script src='calendar_main.js'></script>
+    <script src='calendar_daygrid.js'></script>
+    <script src='calendar_interaction.js'></script>
+    <script src='calendar_timegrid.js'></script>
+
+    <script>
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          plugins: [ 'dayGrid', 'timeGrid', 'interaction' ],
+          aspectRatio: 2,
+          header: {
+            left: 'dayGridMonth',
+            center: 'title',
+            right: 'prev, next'
+          },
+          events: '/meetings.json',
+          eventColor: '#e88523',
+        });
+
+        calendar.render();
+      });
+
+    </script>
+  </head>
+  <body>
+
+    <div class="popup" onclick="releaseNotes()"><h3>Release Notes</h3>
+      <span class="popuptext" id="myPopup">
+        <p>Due to the ongoing Coronavirus Situation:</p>
+        <p>The BeeSmart team has had to re-allocate resources to minimise delays, therefore the following features will be released in the next update:</p>
+        <ol>
+          <li>Addition of meetings to Google Calendar</li>
+          <li>Weekly view of available meetings</li>
+        </ol>
+
+      </span>
+    </div>
+
+    <script>
+      function releaseNotes() {
+        var popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
+      }
+    </script>
+
+    <h3>View your Tutor's availabilities</h3>
+    <%= link_to "Sign in with Google", student_google_oauth2_omniauth_authorize_path %>
+    <div id='calendar'></div>
+
+  </body>
+</html>

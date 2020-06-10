@@ -6,7 +6,8 @@ ruby '2.5.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.2'
 # Use postgres as the database for Active Record
-gem 'pg'
+#gem 'pg'
+gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -69,7 +70,22 @@ gem 'devise'
 gem 'carrierwave'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'modernizr-rails'
+
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap4-datetime-picker-rails'
+
+# Google Oauth
+gem 'omniauth-google-oauth2'
+gem 'google-api-client', require: 'google/apis/calendar_v3'
+
+# Environment Variables
+gem 'figaro' 
+
 #for rating
 gem 'font-awesome-rails'
 gem 'simple_form'
 gem 'redis'
+
+#for contact form
+gem 'mail_form'
+

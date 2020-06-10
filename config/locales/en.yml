@@ -141,12 +141,12 @@ en:
       home:
         welcome: Welcome to your student dashboard
         progress: Your language progress
-        language:  "You're learning"
+        language:  "You're learning "
         french: French
         spanish: Spanish
         english: English
         german: German
-        choice: "You haven't chosen a language yet"
+        choice: "You haven't chosen a language yet."
         quizzes: Test yourself on tutor created quizzes
         quiz_button: View Quizzes
         submissions: View your quiz submissions
@@ -159,7 +159,7 @@ en:
         writing: Writing
         report: Personalised progress report
         submissions: Submissions
-        description: After you have submitted your quiz the tutor willl send you a feedback
-        desc: The feedback could be seen in the submissions page
+        description: After you have submitted your quiz the tutor willl send you feedback
+        desc: The feedback can be seen in the submissions page
         quizzes: All available quizzes
-        quiz: Qizz options
+        quiz: Quiz options
