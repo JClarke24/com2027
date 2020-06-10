@@ -39,36 +39,33 @@
           <!-- Accordion -->
           <div class="profile-card profile-round">
             <div class="profile-white">
-              <button onclick="myFunction('Demo1')" class="profile-button profile-block profile-theme-l1 profile-left-align"><i class="fa fa-circle-o-notch fa-fw profile-margin-right"></i> My Tutees</button>
+              <button onclick="myFunction('Demo1')" class="profile-button profile-block profile-theme-l1 profile-left-align"><i class="fa fa-circle-o-notch fa-fw profile-margin-right"></i> <%= t('.my_tutees') %></button>
               <div id="Demo1" class="profile-hide profile-container">
-                <p> List of the tutees accounts...</p>
+                <p> <%= t('.list') %></p>
+                <% @students = Student.where(tutor_id: current_tutor.id, tutor_confirmed: true)
+                   @students.each do |student| %>
+                <li><h6>
+                  <%= student["forename"] %> &nbsp; <%= student["surname"] %>
+                  <%=button_to "Contact", {action: "messages", params: {:student_id => student["id"]}}, {class: 'btn'} %>
+                </h6></li>
+               <%  end %>
               </div>
-              <button onclick="myFunction('Demo2')" class="profile-button profile-block profile-theme-l1 profile-left-align"><i class="fa fa-calendar-check-o fa-fw profile-margin-right"></i> My Events</button>
+              <button onclick="myFunction('Demo2')" class="profile-button profile-block profile-theme-l1 profile-left-align"><i class="fa fa-calendar-check-o fa-fw profile-margin-right"></i> <%= t('.my_events') %> </button>
               <div id="Demo2" class="profile-hide profile-container">
                 <p>Some text..</p>
               </div>
-              <button onclick="myFunction('Demo3')" class="profile-button profile-block profile-theme-l1 profile-left-align"><i class="fa fa-users fa-fw profile-margin-right"></i> My Quizzes</button>
+              <button onclick="myFunction('Demo3')" class="profile-button profile-block profile-theme-l1 profile-left-align"><i class="fa fa-users fa-fw profile-margin-right"></i> <%= t('.my_quizzes') %> </button>
               <div id="Demo3" class="profile-hide profile-container">
              <div class="profile-row-padding">
              <br>
-               <<div class="profile-half">
-                 <img src="/profileimages/lights.jpg" style="width:100%" class="profile-margin-bottom">
+
+               <div class="profile-half">
+                 <%= link_to "New Quiz", new_quiz_path, class: "btn btn-primary" %>
                </div>
                <div class="profile-half">
-                 <img src="/profileimages/nature.jpg" style="width:100%" class="profile-margin-bottom">
+                 <%= link_to "My Quizzes", quizzes_path, class: "btn btn-primary" %>
                </div>
-               <div class="profile-half">
-                 <img src="/profileimages/mountains.jpg" style="width:100%" class="profile-margin-bottom">
-               </div>
-               <div class="profile-half">
-                 <img src="/profileimages/forest.jpg" style="width:100%" class="profile-margin-bottom">
-               </div>
-               <div class="profile-half">
-                 <img src="/profileimages/nature.jpg" style="width:100%" class="profile-margin-bottom">
-               </div>
-               <div class="profile-half">
-                 <img src="/profileimages/snow.jpg" style="width:100%" class="profile-margin-bottom">
-               </div>
+
              </div>
               </div>
             </div>
@@ -76,20 +73,11 @@
         </div><br>
       </div><br>
 
-      <div class="profile-card profile-round profile-white profile-center">
-        <div class="profile-container">
-          <p>Upcoming Tutee Meeting:</p>
-          <img src="/profileimages/forest.jpg" alt="Picture of the place of the meeting" style="width:100%;">
-          <p><strong>Name of the tutee</strong></p>
-          <p>What time </p>
-          <p><button class="profile-button profile-block profile-theme-l4">Info</button></p>
-        </div>
-      </div>
-      <br>
+    
       <ul>
       <div class="profile-card profile-round profile-white profile-center">
           <div class="profile-container">
-            <p>Tutee Request</p>
+            <p><%= t('.request') %></p>
      <% @students = Student.where(tutor_id: current_tutor.id, tutor_confirmed: false)
         @students.each do |student| %>
 
@@ -105,7 +93,7 @@
  </div>
     <%  end %>
     <% if @students.length == 0%>
-      <p>You have no tutee requests at this time.</p>
+      <p><%= t('.message') %></p>
       <%end %>
     </ul>
       </div>
@@ -120,42 +108,23 @@
       <div class="profile-container profile-card profile-white profile-margin-bottom">
         <h2 class="profile-text-orange profile-padding-16"><i class="fa fa-suitcase fa-fw profile-margin-right profile-xxlarge profile-text-orange"></i>About me</h2>
         <div class="profile-container">
-          <h5 class="profile-opacity"><b> What I do?</b></h5>
+          <h5 class="profile-opacity"><b><%= t('.description') %> </b></h5>
           <p> <%= current_tutor.description %> </p>
           <hr>
         </div>
         <div class="profile-container">
-          <h5 class="profile-opacity"><b>What I offer?</b></h5>
+          <h5 class="profile-opacity"><b><%= t('.offer') %> </b></h5>
           <p> <%= current_tutor.description2 %> </p>
           <hr>
         </div>
         <div class="profile-container">
-          <h5 class="profile-opacity"><b>What is my rating?</b></h5>
+          <h5 class="profile-opacity"><b><%= t('.rating') %> </b></h5>
           <p>How people rate me </p>
           <hr>
         </div>
       </div>
 
-      <div class="profile-container profile-card profile-white">
-        <h2 class="profile-text-orange profile-padding-16"><i class="fa fa-certificate fa-fw profile-margin-right profile-xxlarge profile-text-orange"></i>Education</h2>
-        <div class="profile-container">
-          <h5 class="profile-opacity"><b>Sample</b></h5>
-          <h6 class="profile-text-orange"><i class="fa fa-calendar fa-fw profile-margin-right"></i>Forever</h6>
-          <p>A description of one of my educations</p>
-          <hr>
-        </div>
-        <div class="profile-container">
-          <h5 class="profile-opacity"><b>London Business School</b></h5>
-          <h6 class="profile-text-orange"><i class="fa fa-calendar fa-fw profile-margin-right"></i>2013 - 2015</h6>
-          <p>Master Degree</p>
-          <hr>
-        </div>
-        <div class="profile-container">
-          <h5 class="profile-opacity"><b>School of Coding</b></h5>
-          <h6 class="profile-text-orange"><i class="fa fa-calendar fa-fw profile-margin-right"></i>2010 - 2013</h6>
-          <p>Bachelor Degree</p><br>
-        </div>
-      </div>
+
 
     <!-- End Right Column -->
     </div>

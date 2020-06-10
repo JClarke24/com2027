@@ -1,31 +1,31 @@
-<h1>Welcome to your student dashboard!</h1>
+<h1><%= t('.welcome') %></h1>
 
 <!-- shows language progress
 or if a language hasn't been selected, lets student choose language -->
 <div id="language">
-  <h2>Your language progress</h2>
+  <h2><%= t('.progress') %></h2>
   <% if @language != "Language"%>
-  <h1> You're learning <%=@language %> </h1>
+  <h1> <%= t('.language') %><%=@language %> </h1>
   <% else %>
-  <p>You haven't chosen a language yet.</p>
+  <p><%= t('.choice') %></p>
   <div id="langSelect">
     <div class = "container">
     <div class="col-sm-3">
-      French <br>
+    <%= t('.french') %> <br>
       <%=image_tag("french.png")%><br>
 
     </div>
     <div class="col-sm-3">
-      Spanish <br>
+      <%= t('.spanish') %> <br>
       <%=image_tag("spanish.png")%><br>
     </div>
     <div class="col-sm-3">
-      English <br>
+    <%= t('.english') %> <br>
       <%=image_tag("english.png")%><br>
     </div>
     <div class="col-sm-3">
       German <br>
-      <%=image_tag("germany.jpeg")%><br>
+      <%=image_tag("germany.jpg")%><br>
     </div>
     </div>
     <div class="col-sm-3">
@@ -53,15 +53,92 @@ or if tutor hasn't been selected, allows student to find a tutor -->
 <div id="tutor">
 <h2>Your tutor progress </h2>
 <% if @tutor && @tutor_confirmed %>
-<%= @tutor.forename%> &nbsp;<%= @tutor.surname%>
+  <h5>Your tutor is <%= @forename%> &nbsp;<%= @surname%></h5>
+<!--rounding on client side so that rates can be sorted more accurately on server side-->
+<h5>Current rating: <%=@tutor_rating.round(1) %> &nbsp; (<%= @tutor.num_rates %> rates) </h5>
+<h3>Rate your tutor</h3>
+<h5 id = "currentRating">&nbsp;</h5>
+  <%= form_tag('rateTutor')  %>
+  <%= hidden_field_tag 'tutor_rating' %>
+<span id = "star1" class="fa fa-star unchecked"></span>
+<span id = "star2" class="fa fa-star unchecked"></span>
+<span id = "star3" class="fa fa-star unchecked"></span>
+<span id = "star4" class="fa fa-star unchecked"></span>
+<span id = "star5" class="fa fa-star unchecked"></span>
+<br>
+   <%= submit_tag "Submit rating", :class => "btn", :id => "submit_rating" %>
+<br>
+<span class = "fa fa-flag" style = "color: red; font-size: 1em;"></span> &nbsp;Any problems with your tutor? Report them to the site administrators<a href = "/flag"> here. </a>
 <%elsif @tutor %>
 <p>Your tutor request has been sent to <%= @tutor.forename %></p>
-<% else %>
-<% puts("Tutor id #{@tutor_id}") %>
+<% elsif @language != "Language"%>
 <p>You don't have a tutor yet. Pick one now to take your learning to the
 next level!</p>
 <button class = "btn"><a href="findTutor">Find a Tutor</a></button>
+<%else %>
+<p>Pick a language so you can find a tutor near you.</p>
 <% end %>
 <button type="button" name="button" class = "btn"><a href="student_schedule">Schedule</a></button>
+
+</div>
+<script>
+  //change the text to 'update rating' if user has already rated tutor
+  //also show their previous rating
+var rated = <%=@rated %>;
+//console.log("rated? "+rated);
+if(rated){
+$('#submit_rating').val('Update rating');
+var currentRating = <%=@current_rating %>;
+var name = '<%=@forename %>'
+$('#currentRating').html('Your current rating for ' + name +': ' + currentRating);
+}
+var list = ['star1','star2','star3','star4','star5'];
+list.forEach(function(element) {
+document.getElementById(element).addEventListener("click", function(){
+    var cls=document.getElementById(element).className;
+    if(cls.includes("unchecked")){
+document.getElementById(element).classList.replace("unchecked", "checked");
+//if star 4 is selected we want stars 1-3 to be selected too
+position = list.indexOf(element);
+console.log(position+1);
+  for(i = 0; i <= position; i++){
+    document.getElementById(list[i]).classList.replace("unchecked", "checked");
+    $('#tutor_rating').val(position+1);
+}
+}
+else{
+document.getElementById(element).classList.replace("checked", "unchecked");
+//if star 4 is deselected we want stars 1-3 to be deselected too
+position = list.indexOf(element);
+  console.log(position+1);
+  for(i = 4; i > position; i--){
+    document.getElementById(list[i]).classList.replace("checked", "unchecked");
+    $('#tutor_rating').val(position+1);
+}
+}
+  });
+});
+</script>
+<br>
+<div class="spacer">
+
+</div>
+
+<div>
+  <h2>  <%= t('.quizzes') %></h2>
+  <button class = "btn"><a href="quizzes">View Quizzes</a></button>
+
+</div>
+
+<div>
+  <h2>  <%= t('.submissions') %> </h2>
+  <button class = "btn"><a href="submissions">View Submissions</a></button>
+
+</div>
+
+
+<div>
+  <h2> Live chat with other students</h2>
+  <button class = "btn"><a href="rooms">Go to Chat Rooms</a></button>
 
 </div>

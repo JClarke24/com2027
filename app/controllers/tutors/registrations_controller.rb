@@ -4,6 +4,7 @@ class Tutors::RegistrationsController < Devise::RegistrationsController
   include Accessible_tutor
   skip_before_action :check_tutor, except: [:new, :create]
   # before_action :configure_sign_up_params, only: [:create]
+  skip_before_action :verify_authenticity_token, :only => :create
   before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -53,9 +54,9 @@ class Tutors::RegistrationsController < Devise::RegistrationsController
   end
 
   # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+  def after_sign_up_path_for(resource)
+    tutor_sign_up_test_path(resource)
+  end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)

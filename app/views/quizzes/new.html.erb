@@ -1,0 +1,71 @@
+<h1><%= t('.title') %></h1>
+
+<style>
+.table1{
+  border-style: solid;
+  padding-right: 400px;
+  padding-left: 400px;
+
+
+  }
+.field{
+  position: center;
+}
+
+</style>
+
+<% if !@quiz.errors.empty? %>
+   <div class = "alert alert-error">
+
+      <ul>
+         <% @quiz.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+         <% end %>
+      </ul>
+
+   </div>
+<% end %>
+
+<div class="table1">
+   <%= form_for @quiz, html: { multipart: true } do |f| %>
+
+    </br>
+    </br>
+
+
+
+
+     <div class="field">
+       <%= f.label :tutor_id %>
+       </br>
+       <%= f.text_field :tutor_id, value: current_tutor.id, disabled: true %>
+     <div>
+
+    <div class="field">
+      <%= f.label :language %>
+      </br>
+      <%= f.text_field :language %>
+    <div>
+    <div class="field">
+      <%= f.label :topic %>
+      </br>
+      <%= f.text_field :topic %>
+    <div>
+    <div class="field">
+      <%= f.label :level %>
+      </br>
+      <%= f.text_field :level %>
+    <div>
+    <div class="field">
+      <%= f.label :attachment %>
+      </br>
+      <%= f.file_field :attachment %>
+    <div>
+    <div class="field">
+      <%= f.submit "Save", class: "btn btn-primary" %>
+      <%= link_to "Back", :back,  :class => "btn" %>
+
+    <div>
+   <% end %>
+
+</div>

@@ -42,5 +42,124 @@ en:
         profile: Profile
         sign_up: Sign Up
         dashboard: Dashboard
+        student: Students
+        tutor: Tutor
+        admin: Admin
     footer:
       title: BeeSmart
+
+  quizzes:
+    index:
+      title: The Quiz Hve
+      tutor: Tutor
+      language: Language
+      level: Level
+      topic: Topic
+      download: Download
+
+    new:
+      title: Add new quiz to the hive
+  submissions:
+    edit:
+      title: Submit Feedback
+
+    index:
+      title: Submission
+      tutor: Tutor
+      student: Student
+      description: Description
+      submission: Submission
+      feedback: Feedback
+
+    new:
+      title: Submit a Quiz
+
+  tutors:
+    registration:
+      new:
+        title: Sign up as a tutor
+        agreement: By creating an account you agree to our
+        terms: Terms & Privacy
+        confirmation: You confirm that you are over 16 and you agree that your data will be stored according to the GDPR regulations
+
+    dashboards:
+      profile:
+        my_tutees: My Tutees
+        list: List of the tutees accounts
+        my_events: My Events
+        my_quizzes: My Quizzes
+        meetings: Upcoming Tutee Meeting
+        tutee: Name of the tutee
+        time: What time
+        request: Tutee Request
+        message: "You have no tutee requests at this time."
+        about: About me
+        description: "What I do?"
+        offer: "What I offer?"
+        rating: "What is my rating?"
+
+      home:
+        welcome: "Welcome to your tutor dashboard!"
+        quiz_submissions: View your students quiz submissions
+        button_submissions: View Submissions
+        your_tutees: Your tutees
+        complete: "Complete your profile so you can start tutoring."
+        requests: Your student requests
+        confirmed: Your confirmed students
+        location: Set a location so you can start tutorings
+        request_submissions: View your students improvements graph requests
+        button_request: View requests
+
+    quizzes:
+      english:
+          description: If you pass the test you will be able to proceed
+          status: Status
+          test: English test
+      french:
+          description: If you pass the test you will be able to proceed
+          status: Status
+          test: French test
+      german:
+          description: If you pass the test you will be able to proceed
+          status: Status
+          test: German test
+      spanish:
+          description: If you pass the test you will be able to proceed
+          status: Status
+          test: Spanish test
+      tutortest:
+          description: "Do you want to become part of BeeSmart as a tutor?"
+          description2: You need to solve any of the tests before you can start using Beesmart
+          status: Current status
+          spanish: Spanish
+          german: German
+          french: French
+          english: English
+
+  students:
+    dashboards:
+      home:
+        welcome: Welcome to your student dashboard
+        progress: Your language progress
+        language:  "You're learning"
+        french: French
+        spanish: Spanish
+        english: English
+        german: German
+        choice: "You haven't chosen a language yet"
+        quizzes: Test yourself on tutor created quizzes
+        quiz_button: View Quizzes
+        submissions: View your quiz submissions
+        submission_button: View Submissions
+      profile:
+        progress: Your progress in
+        listening: Listening
+        reading: Reading
+        speaking: Speaking
+        writing: Writing
+        report: Personalised progress report
+        submissions: Submissions
+        description: After you have submitted your quiz the tutor willl send you a feedback
+        desc: The feedback could be seen in the submissions page
+        quizzes: All available quizzes
+        quiz: Qizz options

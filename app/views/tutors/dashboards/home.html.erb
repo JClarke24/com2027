@@ -1,14 +1,14 @@
-<h1>Welcome to your tutor dashboard!</h1>
+<h1><%= t('.welcome') %></h1>
 
 <div class="tutoring">
-  <h2>Your tutees</h2>
+  <h2><%= t('.your_tutees') %></h2>
   <% if ((@forename == ("First Name") || @surname == "Surname") || @description == nil )%>
   <%= puts("Forename #{@forename} surname #{@surname} description #{@description}")%>
-    <h5> Complete your profile so you can start tutoring. </h5>
+    <h5> <%= t('.complete') %> </h5>
     <button type="button" name="button" class = "btn"><a href="setInfo">Complete my Profile</a></button>
   <% elsif @location != "(0.0, 0.0)"%>
     <%= puts("Forename #{@forename} surname #{@surname} description #{@description}")%>
-  <h5> Your student requests</h5>
+  <h5> <%= t('.requests') %></h5>
     <%= puts("tutor #{current_tutor.id}")%>
     <ul>
    <% @students = Student.where(tutor_id: current_tutor.id, tutor_confirmed: false)
@@ -19,7 +19,7 @@
    <%=button_to "Reject", {action: "rejectStudent", params: {:student_id => student["id"]}}, {class: 'btn'} %></h6></li>
  <%  end %>
  </ul>
- <h5>Your confirmed students</h5>
+ <h5><%= t('.confirmed') %></h5>
  <ul>
  <% @students = Student.where(tutor_id: current_tutor.id, tutor_confirmed: true)
     @students.each do |student| %>
@@ -28,11 +28,30 @@
  </h6></li>
 <%  end %>
 </ul>
+
   <% else %>
       <p>Set a location so you can start tutoring.</p>
       <p></p>
       <button type="button" name="button" class = "btn"><a href="setLocation">Set my Location</a></button>
   <% end %>
   <button type="button" name="button" class = "btn"><a href="schedule">My Schedule</a></button>
+
+</div>
+
+<div>
+  <h2> <%= t('.quiz_submissions') %> </h2>
+  <button class = "btn"><a href="submissions"><%= t('.button_submissions') %></a></button>
+
+</div>
+
+<div>
+  <h2> <%= t('.request_submissions') %> </h2>
+  <button class = "btn"><a href="improvements"><%= t('.button_request') %></a></button>
+
+</div>
+
+<div>
+  <h2> Live chat with other tutors</h2>
+  <button class = "btn"><a href="room_tutors">Go to Chat Rooms</a></button>
 
 </div>

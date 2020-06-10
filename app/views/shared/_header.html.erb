@@ -3,7 +3,7 @@
   <nav id="navbar">
     <table align="center" >
       <% if student_signed_in? %>
-        <tr> <th> Students </th> </tr>
+        <tr> <th> <%= "#{t('.student')}" =%> </th> </tr>
         <tr>
           <td>
             <%= "#{current_student.email} |" %>
@@ -15,7 +15,7 @@
           </td>
         </tr>
       <% elsif tutor_signed_in? %>
-        <tr>  <th> Tutors </th> </tr>
+        <tr>  <th> <%= "#{t('.tutor')}" =%> </th> </tr>
         <tr>
           <td>
             <%= "#{current_tutor.email} |" %>
@@ -26,8 +26,19 @@
             <%= link_to t('shared.header.logout'), destroy_tutor_session_path, method: 'delete' %>
           </td>
         </tr>
+        <% elsif admin_signed_in? %>
+          <tr>  <th> <%= "#{t('.admin')}" =%> </th> </tr>
+          <tr>
+            <td>
+              <%= link_to t('shared.header.dashboard'), admin_home_url %>
+                          <%= '|' %>
+                          <%= link_to t('shared.header.profile'), edit_admin_registration_path %>
+                                      <%= '|' %>
+              <%= link_to t('shared.header.logout'), destroy_admin_session_path, method: 'delete' %>
+            </td>
+          </tr>
       <% else %>
-        <tr> <th> Students </th> <th> Tutors </th> </tr>
+        <tr> <th> <%= "#{t('.student')}" =%> </th> <th> <%= link_to t('shared.header.tutor') %> </th> <th> <%= "#{t('.admin')}" =%></th></tr>
         <tr>
           <td>
             <%= link_to t('shared.header.login'), new_student_session_path %>
@@ -38,6 +49,11 @@
             <%= link_to t('shared.header.login'), new_tutor_session_path %>
             <%= '|' %>
             <%= link_to t('shared.header.sign_up'), new_tutor_registration_path %>
+          </td>
+          <td>
+            <%= link_to t('shared.header.login'), new_admin_session_path %>
+            <%= '|' %>
+            <%= link_to t('shared.header.sign_up'), new_admin_registration_path %>
           </td>
         </tr>
       <% end %>

@@ -1,0 +1,77 @@
+<h1>
+  <%= @room_tutor.name %>
+</h1>
+
+<div class="row">
+  <div class="col-12 col-md-3">
+    <%= render partial: 'rooms' %>
+  </div>
+
+  <div class="col">
+    <div class="chat" data-channel-subscribe="roomtutor" data-roomtutor-id="<%= @room_tutor.id %>">
+      <% @room_tutor_msgs.each do |room_tutor_msg| %>
+        <div class="chat-message-container">
+          <div class="row no-gutters">
+            <div class="col-auto text-center">
+            </div>
+
+            <div class="col">
+              <div class="message-content">
+                <p class="mb-1">
+                  <%= room_tutor_msg.message %>
+                </p>
+                <div class="text-left">
+                  <%= Tutor.find(room_tutor_msg.tutor_id).forename %>
+                </div>
+                <div class="text-right">
+                  <small>
+                    <%= room_tutor_msg.created_at %>
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    </div>
+</div>
+
+<%= simple_form_for @room_tutor_msg, remote: true do |form| %>
+  <div class="input-group mb-3">
+    <%= form.input :message, as: :string,
+                             wrapper: false,
+                             label: false,
+                             input_html: {
+                               class: 'chat-input'
+                             } %>
+    <div class="input-group-append">
+      <%= form.submit "Send", class: 'btn btn-primary chat-input' %>
+    </div>
+  </div>
+
+  <%= form.input :room_tutor, as: :hidden, :input_html => { :value => @room_tutor.id } %>
+<% end %>
+
+
+
+
+<div class="d-none" data-role="message-template">
+  <div class="chat-message-container">
+    <div class="row no-gutters">
+      <div class="col-auto text-center">
+      </div>
+
+      <div class="col">
+        <div class="message-content">
+          <p class="mb-1" data-role="message-text"></p>
+
+          <div class="text-left" data-role="message-tutor-forename"></div>
+          <div class="text-right">
+            <small data-role="message-date"></small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
