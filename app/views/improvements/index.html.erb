@@ -1,0 +1,75 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Improvements</h1>
+
+<% if student_signed_in? %>
+<%= link_to "New Request", new_improvement_path, class: "btn btn-primary" %>
+<p>If you already have an improvement graph and want a new one,</br> please delete the one you have and wait for the new one </br> or wait for the tutor to further update it</p>
+<p></p>
+
+<br />
+<br />
+<% end %>
+
+<table  class = "table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Student</th>
+      <th>Tutor</th>
+      <th>Listening</th>
+      <th>Writing</th>
+      <th>Reading</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @improvements.each do |improvement| %>
+      <tr>
+        <td><%= improvement.student.surname %></td>
+        <td><%= improvement.tutor.surname %></td>
+        <td><%= improvement.listening %></td>
+        <td><%= improvement.writing %></td>
+        <td><%= improvement.reading %></td>
+        <% if student_signed_in? %>
+          <td><%= button_to "Delete",  improvement, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{improvement.request}?" %></td>
+        <% elsif tutor_signed_in? %>
+          <td><%= link_to "Submit Improvement Feedback", edit_improvement_path(improvement)%></td>
+        <% end %>
+      </tr>
+
+      <% if student_signed_in? %>
+            <script type="text/javascript">
+        window.onload = function () {
+          var chart = new CanvasJS.Chart("chartContainer", {
+
+            title:{
+              text: "Your improvement"
+            },
+            data: [//array of dataSeries
+              { //dataSeries object
+
+               /*** Change type "column" to "bar", "area", "line" or "pie"***/
+               type: "column",
+               dataPoints: [
+               { label: "writing", y: <%= improvement.writing %> },
+               { label: "reading", y: <%= improvement.reading %> },
+               { label: "listening", y: <%= improvement.listening %> },
+               ]
+             }
+             ]
+           });
+
+          chart.render();
+        }
+        </script>
+        <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+        <div id="chartContainer" style="height: 300px; width: 100%;">
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Improvement', new_improvement_path %>
