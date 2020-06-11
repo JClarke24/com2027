@@ -3,7 +3,7 @@
   <nav id="navbar">
     <table align="center" >
       <% if student_signed_in? %>
-        <tr> <th> Students </th> </tr>
+        <tr> <th> <%= "#{t('.student')}" =%> </th> </tr>
         <tr>
           <td>
             <%= "#{current_student.email} |" %>
@@ -15,7 +15,7 @@
           </td>
         </tr>
       <% elsif tutor_signed_in? %>
-        <tr>  <th> Tutors </th> </tr>
+        <tr>  <th> <%= "#{t('.tutor')}" =%> </th> </tr>
         <tr>
           <td>
             <%= "#{current_tutor.email} |" %>
@@ -27,7 +27,7 @@
           </td>
         </tr>
         <% elsif admin_signed_in? %>
-          <tr>  <th> Admin </th> </tr>
+          <tr>  <th> <%= "#{t('.admin')}" =%> </th> </tr>
           <tr>
             <td>
               <%= link_to t('shared.header.dashboard'), admin_home_url %>
@@ -38,7 +38,7 @@
             </td>
           </tr>
       <% else %>
-        <tr> <th> Students </th> <th> Tutors </th> <th> Admin</th></tr>
+        <tr> <th> <%= "#{t('.student')}" =%> </th> <th> <%= link_to t('shared.header.tutor') %> </th> <th> <%= "#{t('.admin')}" =%></th></tr>
         <tr>
           <td>
             <%= link_to t('shared.header.login'), new_student_session_path %>

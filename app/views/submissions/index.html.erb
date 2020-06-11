@@ -1,4 +1,4 @@
-<h1> Submissions </h1>
+<h1> <%= t('.title') %> </h1>
 
 <% if student_signed_in? %>
 <%= link_to "New Submissions", new_submission_path, class: "btn btn-primary" %>
@@ -9,11 +9,11 @@
 <table class = "table table-bordered table-striped">
    <thead>.
       <tr>
-         <th>Tutor</th>
-         <th>Student</th>
-         <th>Description</th>
-         <th>Submission</th>
-         <th>Feedback</th>
+         <th><%= t('.tutor') %></th>
+         <th><%= t('.student') %></th>
+         <th><%= t('.description') %></th>
+         <th><%= t('.submission') %></th>
+         <th><%= t('.feedback') %></th>
          <th> </th>
       </tr>
    </thead>
