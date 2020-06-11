@@ -1,24 +1,8 @@
-# README
+# BeeSmart
+*Language learning, done right.*
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The application is live at [http://shielded-dusk-09822.herokuapp.com/](http://shielded-dusk-09822.herokuapp.com/)
 
-Things you may want to cover:
+Alternatively, download the project, run `bundle install` followed by `rails db:migrate`and `rails s` to run the Ruby on Rails project from the command line.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+*Note: for the live chat to work, redis-server must be installed. Installation instructions are available in the FAR.*
