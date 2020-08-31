@@ -1,5 +1,0 @@
-Client ID:
-1031056337305-3m51ueucr39hrllm5n3m0g7u7o49mvc4.apps.googleusercontent.com
-
-Client secret:
-OTTT_ZSsn7-Jii3vjlOu7npP
